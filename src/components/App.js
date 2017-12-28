@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles/App.css';
+import '../styles/App.css';
 import Header from "./Header"
 import Welcome from "./Welcome"
 import About from "./About"
@@ -18,13 +18,13 @@ class App extends Component {
     this.playing=false
   }
 
-componentDidMount(){
-  this.props.populateGameList("default")
-  if (!this.playing){
-    this.playing=true
-    this.props.doAutoPlay(1500)
+  componentDidMount(){
+    this.props.populateGameList("default")
+    if (!this.playing){
+      this.playing=true
+      this.props.doAutoPlay(1500)
+    }
   }
-}
 
   render() {
     return (
@@ -39,13 +39,32 @@ componentDidMount(){
             <Route  exact path="/upload" component={CodeUpload}/>
             <Route  path="/games/:gameID/:stateIndex" component={GameViewer}>
               <GameViewer/>
-              </Route>
+            </Route>
           </div>
         </Router>
-    </div>
+      </div>
 
-  );
-}
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+
+  return {
+    gameID:state.gameID,
+    gameArray: state.gameArray
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    populateGameList: gameType => {
+      dispatch(fetchGames(gameType))
+    },
+    doAutoPlay: (delay) => {
+      dispatch(doAutoPlay(delay))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
