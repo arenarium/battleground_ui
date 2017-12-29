@@ -20,9 +20,9 @@ class PlayerStats extends Component {
     for (let key in playerArray) {
       if (playerArray.hasOwnProperty(key)) {
 
-        let playerID = playerArray[key]["_id"]
+        // let playerID = playerArray[key]["_id"]
         let playerName = playerArray[key]["name"]
-        let gameType = playerArray[key]["game_type"]
+        // let gameType = playerArray[key]["game_type"]
         let wins = playerArray[key]["wins"]
 
         listItemArray.push(

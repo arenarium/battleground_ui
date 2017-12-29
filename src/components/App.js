@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux"
 import '../styles/App.css';
 import Header from "./Header"
-import Welcome from "./Welcome"
-import About from "./About"
-import GameViewer from "./GameViewer"
-import PlayerStats from "./PlayerStats"
-import CodeUpload from "./CodeUpload"
+import Welcome from "../screens/Welcome"
+import About from "../screens/About"
+import GameViewer from "../screens/GameViewer"
+import PlayerStats from "../screens/PlayerStats"
+import CodeUpload from "../screens/CodeUpload"
 import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom'
 
+import {fetchGames, doAutoPlay} from "../actions/GameViewer"
 
 class App extends Component {
   constructor(props){

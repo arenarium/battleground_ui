@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk'
 import { createStore, applyMiddleware } from 'redux'
 
 import './index.css';
-import AppContainer from './containers/AppContainer'
+import App from './components/App'
 import battlegroundApp from './reducers'
 import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -26,7 +26,7 @@ const store = createStore(
 
 ReactDOM.render(
  <Provider store={store}>
-   <AppContainer/>
+   <App/>
  </Provider>,
    document.getElementById('root'));
 

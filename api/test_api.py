@@ -2,7 +2,7 @@ import pytest
 import json
 import sys
 
-sys.path.append("ui/api")
+sys.path.append("api")
 import app
 
 

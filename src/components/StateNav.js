@@ -1,5 +1,10 @@
 import React from 'react';
+import {connect} from "react-redux"
+
 import {  Row, Col,Grid,Pager, Form,FormGroup,ControlLabel,FormControl,Checkbox} from 'react-bootstrap';
+
+import {changeAutoPlay, selectTurn} from "../actions/GameViewer"
+
 
 export const StateNav = ({stateIndex, length, autoPlay, onChangeAutoPlay, onStateSelect})=>{
   return (

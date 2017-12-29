@@ -1,6 +1,8 @@
 import React from 'react';
-import { ListGroup, ListGroupItem} from 'react-bootstrap';
+import {connect} from "react-redux"
 
+import { ListGroup, ListGroupItem} from 'react-bootstrap';
+import {selectGame, fetchStates} from "../actions/GameViewer"
 
 const GameIndex = ({gameArray, onGameSelect})=>{
 

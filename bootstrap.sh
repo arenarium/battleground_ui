@@ -1,4 +1,6 @@
-sudo apt-get update
+vsudo apt-get update
+sudo apt-get install language-pack-en
+
 sudo apt-get install -y zsh curl python3 python3-venv
 sudo apt-get install -y ruby ruby-dev gcc make
 #sudo chsh -s /bin/zsh ubuntu
@@ -19,6 +21,9 @@ chmod +x /tmp/docker-machine
 sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
 
 sudo echo "
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+
 source ~/python3/bin/activate
 cd /vagrant
 export PYTHONPATH=$PYTHONPATH:/vagrant

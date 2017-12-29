@@ -1,11 +1,7 @@
 import React from 'react';
-// import {  Row, Col,Grid,Pager, Form,FormGroup,ControlLabel,FormControl,Checkbox} from 'react-bootstrap';
-import StateNavContainer from '../containers/StateNavContainer'
-// const MyPagination = withRouter(({numItems, newActivePage, history})=>(
-// // {(eventKey)=>{history.push("../"+String(eventKey)+"/")}}
-//   )
-// )
-//,stateIndex,length,autoPlay,onChangeAutoPlay ,onStateSelect
+import {connect} from "react-redux"
+import StateNav from "./StateNav"
+
 const GameStateViewer = ({gameState})=>{
 
   var content
@@ -16,7 +12,7 @@ const GameStateViewer = ({gameState})=>{
     var lastMoveString = JSON.stringify(lastMove, null, 4)
     content = (
       <div>
-        <StateNavContainer/>
+        <StateNav/>
         <p>Last Move:</p>
         <pre>{lastMoveString}</pre>
         <p>Game State</p>

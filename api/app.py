@@ -2,9 +2,7 @@
 rest interface
 """
 
-from flask import Flask, request, jsonify
-from os import path, environ
-import json
+from flask import Flask, jsonify
 
 from battleground.persistence import game_data
 from battleground.persistence import agent_data

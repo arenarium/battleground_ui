@@ -1,8 +1,7 @@
 import React from 'react'
 import { Grid, Row,Col,Panel, PageHeader } from 'react-bootstrap';
-import VisibleGameIndex from '../containers/VisibleGameIndex'
-import VisibleGameState from '../containers/VisibleGameState'
-import 'whatwg-fetch'
+import GameIndex from '../components/GameIndex'
+import GameStateViewer from '../components/GameStateViewer'
 
 
  const GameViewer =() => (
@@ -14,12 +13,12 @@ import 'whatwg-fetch'
       <Row>
         <Col md={3}>
           <Panel>
-            <VisibleGameIndex/>
+            <GameIndex/>
           </Panel>
         </Col>
         <Col md={8}>
           <Panel>
-            <VisibleGameState/>
+            <GameStateViewer/>
           </Panel>
         </Col>
       </Row>
