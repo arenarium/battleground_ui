@@ -1,4 +1,4 @@
-vsudo apt-get update
+sudo apt-get update
 sudo apt-get install language-pack-en
 
 sudo apt-get install -y zsh curl python3 python3-venv
@@ -11,8 +11,13 @@ sudo chsh -s /bin/zsh ubuntu
 
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get -y install nodejs build-essential
-sudo npm install npm@latest -g
-sudo npm install -g create-react-app
+
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+
+sudo yarn global add create-react-app
+sudo yarn global add @storybook/cli
 
 sudo gem install travis -v 1.8.8 --no-rdoc --no-ri
 

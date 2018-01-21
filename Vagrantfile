@@ -30,9 +30,10 @@ Vagrant.configure("2") do |config|
   # via 127.0.0.1 to disable public access
   #config.vm.network "forwarded_port", guest: 8888, host: 8888, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 80, host: 8000, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 5984, host: 5984, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 9009, host: 9009, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 5000, host: 5000, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 8081, host: 8081, host_ip: "127.0.0.1"
 
 
 
@@ -80,6 +81,9 @@ Vagrant.configure("2") do |config|
     d.run "mongo",
       image: "mongo:3.4",
       args: "-v '/data:/data/db' -p 27017:27017"
+    d.run "mongo-express",
+      image: "mongo-express",
+      args: "--link mongo:mongo -p 8081:8081"
   end
 
   config.vm.provision "shell", path: "bootstrap.sh"
@@ -92,6 +96,7 @@ Vagrant.configure("2") do |config|
 
   cd /vagrant
   pip install -r api/requirements.txt
+  yarn install
   SHELL
 
 end
