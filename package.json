@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "konva": "^1.7.6",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
     "react-dom": "^15.6.1",
+    "react-konva": "1.1.6",
     "react-redux": "^5.0.6",
     "react-router": "^4.1.2",
     "react-router-bootstrap": "^0.24.2",
@@ -20,7 +22,16 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "storybook": "CHOKIDAR_USEPOLLING=true start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.3.10",
+    "@storybook/addon-links": "^3.3.10",
+    "@storybook/addons": "^3.3.10",
+    "@storybook/react": "^3.3.10",
+    "babel-core": "^6.26.0"
+  }
 }

@@ -8,7 +8,7 @@ const Welcome = () =>(
 
   <Jumbotron>
   <h2>Build,  Deploy,  Win.</h2>
-  <p>Collaborative game-building and computer player proving ground.</p>
+  <p>Collaborative game-building and computer player battle ground.</p>
   <LinkContainer to="/games">
   <Button>
     Observe Games
