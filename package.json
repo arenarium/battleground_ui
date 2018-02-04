@@ -19,6 +19,7 @@
     "request": "^2.81.0"
   },
   "scripts": {
+    "api": "FLASK_APP=./api/app.py flask run --host=0.0.0.0",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

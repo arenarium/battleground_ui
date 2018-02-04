@@ -9,15 +9,28 @@
 - Vagrant
 
 ### Getting Started
-start vagrant:
+Start vagrant:
 ```
 vagrant up
+vagrant ssh
 ```
 
-to start the development server
+Run some games to populate the database:
+```
+battleground_start --dynamic --count 20
+```
+
+Start the backend dev server:
+```
+yarn run api
+```
+
+Start the frontend dev server:
 ```
 yarn run start
 ```
+
+open your browser to `localhost:3000`
 
 ### Storybook
 To start storybook

@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { Stage, Layer, Rect, Text, Circle, Group } from 'react-konva';
 import { exampleGameState } from "../data/example_arena_game_state"
 
-let default_state = JSON.parse(exampleGameState)
+let defaultState = JSON.parse(exampleGameState)
 
 let colors = ["red","green","blue"]
 
@@ -29,11 +29,11 @@ const Gladiator = ({color, pos}) => {
   )
 }
 
-export const ArenaState = ({gameState= default_state, dungeonPosition=[40,40]})=>{
+export const ArenaState = ({gameState= defaultState, dungeonPosition=[40,40]})=>{
   console.log(gameState);
 
   var arenaWidth = 400
-
+  console.log(gameState);
   var dungeonData = gameState["dungeon"]
   var dungeonSize = dungeonData['size']
   var dungeonWidth = dungeonSize[0][1] - dungeonSize[0][0]
@@ -83,14 +83,15 @@ export const ArenaState = ({gameState= default_state, dungeonPosition=[40,40]})=
 }
 
 
-const mapStateToProps = state => {
-  return ({
-    gameState:state.gameStates.stateArray[state.gameStates.stateIndex],
-  })
-}
-
-const mapDispatchToProps = dispatch => {
-  return []
-  }
-
-export default connect(mapStateToProps, mapDispatchToProps)(ArenaState)
+// const mapStateToProps = state => {
+//   return ({
+//     gameState:state.gameStates.stateArray[state.gameStates.stateIndex],
+//   })
+// }
+//
+// const mapDispatchToProps = dispatch => {
+//   return {}
+//   }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(ArenaState)
+export default ArenaState

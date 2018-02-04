@@ -7,7 +7,8 @@ WORKDIR /app
 RUN apk add --no-cache \
         uwsgi \
         uwsgi-python3 \
-        python3
+        python3 \
+        git
 
 COPY requirements.txt requirements.txt
 

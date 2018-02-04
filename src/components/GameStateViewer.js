@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux"
 import StateNav from "./StateNav"
+import ArenaState from './ArenaState'
 
 const GameStateViewer = ({gameState})=>{
 
@@ -8,15 +9,30 @@ const GameStateViewer = ({gameState})=>{
   if (gameState != null){
     var currentGameState = gameState["game_state"]
     var lastMove = gameState["last_move"]
-    var gameStateString = JSON.stringify(currentGameState, null, 4)
+
+    var gameStateContent = null
+
+    if ("dungeon" in currentGameState) {
+      if ('size' in currentGameState['dungeon']){
+      gameStateContent = (
+        <ArenaState gameState={currentGameState}></ArenaState>
+      )
+    }
+  }
+  if (gameStateContent == null){
+      var gameStateString = JSON.stringify(currentGameState, null, 4)
+      gameStateContent = <pre>{gameStateString}</pre>
+    }
+
+
     var lastMoveString = JSON.stringify(lastMove, null, 4)
     content = (
       <div>
         <StateNav/>
         <p>Last Move:</p>
         <pre>{lastMoveString}</pre>
-        <p>Game State</p>
-        <pre>{gameStateString}</pre>
+        <p>Game State:</p>
+        {gameStateContent}
       </div>
     )
   } else {

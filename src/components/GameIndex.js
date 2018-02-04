@@ -16,7 +16,7 @@ const GameIndex = ({gameArray, onGameSelect})=>{
 
       listItemArray.push(
         <ListGroupItem key={key} onClick={() => {onGameSelect(String(gameID))}}>
-          {gameType+": "+gameID.substring(0,8)}
+          {gameType+": "+gameID.substring(10,)}
         </ListGroupItem>
       )
     }
