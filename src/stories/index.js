@@ -17,10 +17,6 @@ import {ArenaState} from "../components/ArenaState"
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
-storiesOf('Button', module)
-  .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
-  .add('with some emoji', () => <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>);
-
 storiesOf('State Navgator', module)
   .add("Default", () => <StateNav stateIndex={5}  length={50}/> )
 

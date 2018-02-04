@@ -1,18 +1,73 @@
 import React from 'react';
-import {connect} from "react-redux"
-import { Stage, Layer, Rect, Text, Circle } from 'react-konva';
+import { connect } from "react-redux"
+import { Stage, Layer, Rect, Text, Circle, Group } from 'react-konva';
+import { exampleGameState } from "../data/example_arena_game_state"
 
-export const ArenaState = ({gameState})=>{
+let default_state = JSON.parse(exampleGameState)
+
+let colors = ["red","green","blue"]
+
+const Gladiator = ({color, pos}) => {
+  return(
+    <Group>
+    <Circle
+      x={pos[0]}
+      y={pos[1]}
+      radius={10}
+      shadowBlur={2}
+      fill= {color}
+      strokeEnabled= {false}
+      />
+      <Circle
+        x={pos[0]}
+        y={pos[1]}
+        radius={7}
+        fillEnabled= {false}
+        stroke= 'white'
+        />
+      </Group>
+  )
+}
+
+export const ArenaState = ({gameState= default_state, dungeonPosition=[40,40]})=>{
+  console.log(gameState);
+
+  var arenaWidth = 400
+
+  var dungeonData = gameState["dungeon"]
+  var dungeonSize = dungeonData['size']
+  var dungeonWidth = dungeonSize[0][1] - dungeonSize[0][0]
+  var dungeonHeight = dungeonSize[1][1] - dungeonSize[1][0]
+
+  var arenaHeight = arenaWidth/dungeonWidth * dungeonHeight
+
+  var gladiatorData = gameState["gladiators"]
+  var gladiatorElements = []
+  var i = 0
+
+  for (let gladiator of gladiatorData) {
+    var position_x = (gladiator.pos[0] - dungeonSize[0][0]) / dungeonWidth * arenaWidth
+    var position_y = (gladiator.pos[1] - dungeonSize[1][0]) / dungeonHeight * arenaHeight
+    gladiatorElements.push(
+      <Gladiator
+        pos ={[position_x + dungeonPosition[0], position_y + dungeonPosition[1]]}
+        color = {colors[i%colors.length]}
+        />
+    )
+    i+=1
+  }
+
+
+
   return (
     <Stage width={500} height={300}>
        <Layer>
-         <Text text={gameState["gameID"]} />
          <Rect   id="Arena"
-                 x={40}
-                 y={40}
-                 width={400}
-                 height={200}
-                 fillEnabled={false}
+                 x={dungeonPosition[0]}
+                 y={dungeonPosition[1]}
+                 width={arenaWidth}
+                 height={arenaHeight}
+                 fill='white'
                  stroke="#555555"
                  strokeWidth={2}
                  shadowBlur={3}
@@ -20,27 +75,18 @@ export const ArenaState = ({gameState})=>{
                />
        </Layer>
        <Layer>
-         <Circle
-           x={70}
-           y={70}
-           radius={70}
-           fill= 'red'
-           stroke= 'black'
-           />
+         {gladiatorElements}
        </Layer>
       </Stage>
 
   )
 }
 
-ArenaState.defaultProps = {
-  gameState: [],
-};
 
 const mapStateToProps = state => {
-  return {
+  return ({
     gameState:state.gameStates.stateArray[state.gameStates.stateIndex],
-  }
+  })
 }
 
 const mapDispatchToProps = dispatch => {
