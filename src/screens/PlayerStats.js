@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { ListGroup, ListGroupItem} from 'react-bootstrap';
 
 
-
-
 class PlayerStats extends Component {
   constructor(props){
     super(props)
   }
 
   componentDidMount(){
-
   }
 
   render() {

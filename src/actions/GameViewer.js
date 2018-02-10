@@ -87,7 +87,7 @@ import {SELECT_GAME, SELECT_TURN, SELECT_PAGE, REQUEST_GAMES,
       // In this case, we return a promise to wait for.
       // This is not required by thunk middleware, but it is convenient for us.
 
-      return fetch('/api/games/')
+      return fetch('/api/games/'+gameType)
       .then(
         response => response.json(),
         // Do not use catch, because that will also catch

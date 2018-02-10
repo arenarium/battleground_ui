@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux"
 import '../styles/App.css';
-import Header from "./Header"
 import Welcome from "../screens/Welcome"
 import About from "../screens/About"
 import GameViewer from "../screens/GameViewer"
 import PlayerStats from "../screens/PlayerStats"
 import CodeUpload from "../screens/CodeUpload"
+import {AppNavigation} from '../components/AppNavigation'
+
 import {
   BrowserRouter as Router,
   Route,
@@ -21,7 +22,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.props.populateGameList("default")
+    this.props.populateGameList("basic_game")
     if (!this.playing){
       this.playing=true
       this.props.doAutoPlay(1500)
@@ -33,7 +34,8 @@ class App extends Component {
       <div className="App">
         <Router>
           <div>
-            <Header/>
+
+            <AppNavigation/>
             <Route exact path="/" component={Welcome}/>
             <Route  path="/about" component={About}/>
             <Route  exact path="/games" component={GameViewer}/>

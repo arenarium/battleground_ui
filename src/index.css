@@ -3,3 +3,17 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+/* .ui.menu{
+  margin: 0;
+} */
+
+.welcome.segment{
+  margin: 0;
+}
+
+.welcome_message{
+  padding-top: 3em;
+  padding-bottom: 3em;
+  /* background-color: #404879; */
+}

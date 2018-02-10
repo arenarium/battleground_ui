@@ -1,46 +1,38 @@
 import React from 'react';
 import {connect} from "react-redux"
 
-import {  Row, Col,Grid,Pager, Form,FormGroup,ControlLabel,FormControl,Checkbox} from 'react-bootstrap';
+import {  Grid,Checkbox, Input} from 'semantic-ui-react';
 
 import {changeAutoPlay, selectTurn} from "../actions/GameViewer"
 
 
 export const StateNav = ({stateIndex, length, autoPlay, onChangeAutoPlay, onStateSelect})=>{
   return (
-    <Grid fluid>
-      <Row >
-        <Col xs={4} md={3}>
-          <Pager style={{margin:0}}>
-            <Pager.Item onClick={()=>onStateSelect(stateIndex-1)}>Previous</Pager.Item>
-          </Pager>
-        </Col>
-        <Col xs={4} md={4}>
-          <Form inline style={{textAlign:"center"}}>
-            <FormGroup controlId="formBasicText">
-              <Checkbox
-                checked={autoPlay}
-                onChange={onChangeAutoPlay}
-                style={{marginRight:"2em"}}>
-                Autoplay
-              </Checkbox>
-              <FormControl
-                type="text"
-                value={stateIndex}
-                placeholder="Enter text"
-                onChange={(event)=>{onStateSelect(event.target.value)}}
-                style={{width:"5em"}}
-                />
-              <ControlLabel>/{length}</ControlLabel>
-            </FormGroup>
-          </Form>
-        </Col>
-        <Col xs={4} md={3}>
-          <Pager style={{margin:0}}>
-            <Pager.Item onClick={()=>{onStateSelect(stateIndex+1)}}>Next</Pager.Item>
-          </Pager>
-        </Col>
-      </Row>
+    <Grid fluid textAlign='center'>
+      <Grid.Row >
+        <Grid.Column width={3}>
+          <Checkbox
+            checked={autoPlay}
+            onChange={onChangeAutoPlay}
+            style={{marginRight:"2em"}} label="Autoplay"/>
+        </Grid.Column>
+        <Grid.Column width={10}>
+
+          <Input
+            fluid
+            min={1}
+            max={length}
+            onChange={(event)=>{onStateSelect(event.target.value)}}
+            type={'range'}
+            value={stateIndex}
+            />
+        </Grid.Column>
+        <Grid.Column width={3}>
+          <p>{"Turn: "+String(stateIndex)+"/"+String(length)}</p>
+
+        </Grid.Column>
+
+      </Grid.Row>
     </Grid>
   )
 }

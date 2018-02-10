@@ -1,16 +1,19 @@
 import React from 'react'
-import {  Jumbotron } from 'react-bootstrap';
-
+import {Segment, Container, Header, Button} from 'semantic-ui-react'
 
 const About = () =>(
-  <div className="container">
 
-  <Jumbotron>
-  <h2>Build,  Deploy,  Win.</h2>
-  <p>This is the About Page</p>
+  <Segment inverted vertical className='welcome'>
+    <Container text className='welcome_message'>
+      <Header as='h1' inverted>Build a new world.</Header>
+      <p>Collaborative game-building and computer player battle ground.</p>
+    </Container>
+    <Container text className='welcome_message'>
+      <Header as='h1' inverted>In the beginning...</Header>
+      <p>Here is some backstory.</p>
+    </Container>
+  </Segment>
 
-  </Jumbotron>
-  </div>
 )
 
 export default About

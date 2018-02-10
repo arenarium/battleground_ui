@@ -1,21 +1,23 @@
 import React from 'react'
-import { Jumbotron, Button } from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap'
+import {Segment, Container, Header, Button} from 'semantic-ui-react'
 
 
 const Welcome = () =>(
-  <div className="container">
 
-  <Jumbotron>
-  <h2>Build,  Deploy,  Win.</h2>
-  <p>Collaborative game-building and computer player battle ground.</p>
-  <LinkContainer to="/games">
-  <Button>
-    Observe Games
-</Button>
-</LinkContainer> or <Button>Join</Button>
-  </Jumbotron>
-  </div>
+  <Segment inverted vertical className='welcome'>
+    <Container text className='welcome_message'>
+      <Header as='h1' inverted>Build,  Deploy,  Win.</Header>
+      <p>Collaborative game-building and computer player battle ground.</p>
+      <Button>
+        Observe Games
+      </Button>
+      or
+      <Button>
+        Join
+      </Button>
+    </Container>
+  </Segment>
+
 )
 
 export default Welcome
