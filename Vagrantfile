@@ -89,6 +89,20 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "bootstrap.sh"
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
+
+  git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+  cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+  sudo chsh -s /bin/zsh $(whoami)
+
+  echo "
+  export LC_ALL=C.UTF-8
+  export LANG=C.UTF-8
+
+  source ~/python3/bin/activate
+  cd /vagrant
+  export PYTHONPATH=$PYTHONPATH:/vagrant
+  " >> .zshrc
+
   pyvenv python3
   . ./python3/bin/activate
   pip install --upgrade pip
