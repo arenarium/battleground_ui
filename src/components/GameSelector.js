@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux"
 import {Dropdown, Grid, Container} from 'semantic-ui-react'
+import {GameTypeSelector} from './GameTypeSelector'
 import {selectGame, fetchStates, fetchGames} from "../actions/GameViewer"
 
-const GameSelector = ({gameTypes, gameArray, onTypeSelect, onGameSelect})=>{
+const GameSelector = ({gameArray, onTypeSelect, onGameSelect})=>{
 
-  let typeOptions = []
   let gameOptions = []
 
   for (let key in gameArray) {
@@ -18,15 +18,6 @@ const GameSelector = ({gameTypes, gameArray, onTypeSelect, onGameSelect})=>{
     }
   }
 
-  for (let key in gameTypes) {
-    if (gameTypes.hasOwnProperty(key)) {
-      let type = gameTypes[key]
-      typeOptions.push(
-        {text: type[0], value: type[1]}
-      )
-    }
-  }
-
   return (
     <Container>
       <Grid>
@@ -35,11 +26,9 @@ const GameSelector = ({gameTypes, gameArray, onTypeSelect, onGameSelect})=>{
             <p>Select a game to view:</p>
           </Grid.Column>
           <Grid.Column key={0}>
-            <Dropdown
-              fluid
-              defaultValue={typeOptions[0]['value']}
-              options={typeOptions}
-              onChange={(event, selection) => onTypeSelect(selection['value'])}
+            <GameTypeSelector
+              fluid={true}
+              onTypeSelect={onTypeSelect}
               />
           </Grid.Column>
           <Grid.Column key={1}>

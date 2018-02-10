@@ -49,9 +49,9 @@ def get_games_types():
     return jsonify(output)
 
 
-@app.route("/api/stats/")
-def get_game_results():
-    data = agent_data.load_game_results(game_type="basic_game")
+@app.route("/api/stats/<game_type>")
+def get_game_results(game_type):
+    data = agent_data.load_game_results(game_type=game_type)
     return jsonify(data)
 
 
