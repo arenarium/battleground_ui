@@ -1,5 +1,5 @@
 import {SELECT_GAME, SELECT_TURN, SELECT_PAGE, REQUEST_GAMES,
-  RECEIVE_GAMES, REQUEST_STATES, RECEIVE_STATES, CHANGE_AUTOPLAY,
+  RECEIVE_GAMES, REQUEST_STATES, RECEIVE_STATES, CHANGE_AUTOPLAY, CHANGE_TEXT_STATE,
   AUTO_INCREMENT_TURN} from './index'
 
 
@@ -55,6 +55,12 @@ import {SELECT_GAME, SELECT_TURN, SELECT_PAGE, REQUEST_GAMES,
     }
   }
 
+
+  export const changeTextState = () => {
+    return {
+      type: CHANGE_TEXT_STATE,
+    }
+  }
 
 
   export const changeAutoPlay = () => {

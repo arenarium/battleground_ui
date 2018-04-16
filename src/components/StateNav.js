@@ -3,18 +3,25 @@ import {connect} from "react-redux"
 
 import {  Grid,Checkbox, Input} from 'semantic-ui-react';
 
-import {changeAutoPlay, selectTurn} from "../actions/GameViewer"
+import {changeAutoPlay, changeTextState, selectTurn} from "../actions/GameViewer"
 
 
-export const StateNav = ({stateIndex, length, autoPlay, onChangeAutoPlay, onStateSelect})=>{
+export const StateNav = ({stateIndex, length, autoPlay, textState,
+                          onChangeTextState, onChangeAutoPlay, onStateSelect})=>{
   return (
     <Grid fluid textAlign='center'>
       <Grid.Row >
-        <Grid.Column width={3}>
+        <Grid.Column width={2}>
           <Checkbox
             checked={autoPlay}
             onChange={onChangeAutoPlay}
             style={{marginRight:"2em"}} label="Autoplay"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+          <Checkbox
+            checked={textState}
+            onChange={onChangeTextState}
+            style={{marginRight:"2em"}} label="Show Raw State"/>
         </Grid.Column>
         <Grid.Column width={10}>
 
@@ -27,7 +34,7 @@ export const StateNav = ({stateIndex, length, autoPlay, onChangeAutoPlay, onStat
             value={stateIndex}
             />
         </Grid.Column>
-        <Grid.Column width={3}>
+        <Grid.Column width={2}>
           <p>{"Turn: "+String(stateIndex)+"/"+String(length)}</p>
 
         </Grid.Column>
@@ -49,6 +56,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onChangeTextState: ()=> dispatch(changeTextState()),
     onChangeAutoPlay: ()=> dispatch(changeAutoPlay()),
     onStateSelect: (turnNum) => {
       if (!isNaN(parseInt(turnNum,10))){

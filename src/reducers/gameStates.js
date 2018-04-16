@@ -12,24 +12,32 @@ function autoIncrement(state){
   }
 }
 
-const gameStates = (state = {didInvalidate: true, stateArray:[], stateIndex:0,autoPlay:true}, action) => {
+const gameStates = (state = {didInvalidate: true,
+                             stateArray:[],
+                             stateIndex:0,
+                             autoPlay:true,
+                             textState: false},
+                    action) => {
   switch (action.type) {
     case 'SELECT_TURN':
     return ({
       ...state,
       stateIndex: getTargetTurn(state.stateIndex,action.turnNum,state.stateArray.length-1)
     })
+
     case 'AUTO_INCREMENT_TURN':
     return ({
       ...state,
       stateIndex: autoIncrement(state)
     })
+
     case 'REQUEST_STATES':
     return ({
       ...state,
       isFetching: true,
       didInvalidate: false
     })
+
     case 'RECEIVE_STATES':
     return ({
       ...state,
@@ -37,11 +45,19 @@ const gameStates = (state = {didInvalidate: true, stateArray:[], stateIndex:0,au
       didInvalidate: false,
       stateArray: action.data,
     })
+
     case 'CHANGE_AUTOPLAY':
     return ({
       ...state,
       autoPlay:!state.autoPlay
     })
+
+    case 'CHANGE_TEXT_STATE':
+    return ({
+      ...state,
+      textState:!state.textState
+    })
+
     default:
     return state
   }

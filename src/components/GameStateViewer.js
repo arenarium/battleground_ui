@@ -4,7 +4,7 @@ import StateNav from "./StateNav"
 import ArenaState from './ArenaState'
 import {Divider, Grid, Container, Segment}  from 'semantic-ui-react'
 
-const GameStateViewer = ({gameState})=>{
+const GameStateViewer = ({gameState, textState})=>{
 
   var content
   if (gameState != null){
@@ -13,7 +13,7 @@ const GameStateViewer = ({gameState})=>{
 
     var gameStateContent = null
 
-    if ("dungeon" in currentGameState) {
+    if (("dungeon" in currentGameState) & (textState==false)) {
       if ('size' in currentGameState['dungeon']){
         gameStateContent = (
           <ArenaState gameState={currentGameState}></ArenaState>
@@ -65,6 +65,7 @@ const mapStateToProps = state => {
   // do work here
   return {
     gameState:state.gameStates.stateArray[state.gameStates.stateIndex],
+    textState:state.gameStates.textState,
   }
 }
 

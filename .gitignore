@@ -215,3 +215,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/osx,node,python,windows,vagrant
+
+# manual entries:
+
+.pytest_cache
