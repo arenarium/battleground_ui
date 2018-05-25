@@ -1,38 +1,19 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
+import {Segment, Container, Header, Divider} from 'semantic-ui-react'
+import FileUploadForm from '../components/FileUploadForm'
+import CodePreview from '../components/CodePreview'
 
-function FieldGroup({ id, label, help, ...props }) {
-  return (
-    <FormGroup controlId={id}>
-      <ControlLabel>{label}</ControlLabel>
-      <FormControl {...props} />
-      {help && <HelpBlock>{help}</HelpBlock>}
-    </FormGroup>
-  );
-}
+const CodeUpload =() => (
+  <Segment vertical>
+    <Container>
+      <Header>Join the fun, upload your player code.</Header>
+      <Segment>
+        <FileUploadForm/>
+        <Divider/>
+        <CodePreview/>
+      </Segment>
+    </Container>
+  </Segment>
+)
 
-
-const CodeUpload = ({codePreview})=>{
-
-  return (
-    <div className="CodeUpload">
-      <form>
-        <FormGroup
-          controlId="formBasicText"
-        >
-          <ControlLabel>Upload Your Agent Code</ControlLabel>
-          <FieldGroup
-                id="formControlsFile"
-                type="file"
-                label="File"
-                help="Example block-level help text here."
-              />
-          <FormControl.Feedback />
-          <HelpBlock>Validation is based on string length.</HelpBlock>
-        </FormGroup>
-      </form>
-    </div>
-  )
-}
-
-export default CodeUpload;
+export default CodeUpload

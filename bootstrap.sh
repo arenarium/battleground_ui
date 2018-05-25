@@ -1,4 +1,5 @@
 sudo apt-get update
+sudo apt-get upgrade
 sudo apt-get install language-pack-en
 
 sudo apt-get install -y zsh curl python3 python3-venv language-pack-en

@@ -37,12 +37,12 @@ export const ArenaState = ({gameState= defaultState})=>{
   // console.log(gameState);
   var dungeonData = gameState["dungeon"]
   var dungeonSize = dungeonData['size']
-  var dungeonWidth = dungeonSize[0][0] - dungeonSize[1][0]
-  var dungeonHeight = dungeonSize[0][1] - dungeonSize[1][1]
+  var dungeonWidth = dungeonSize[0][1] - dungeonSize[0][0]
+  var dungeonHeight = dungeonSize[1][1] - dungeonSize[1][0]
 
   var margin = 20
   var stageRatio = stageSize[0]/stageSize[1]
-  var dungeonRatio = dungeonHeight/dungeonWidth
+  var dungeonRatio = dungeonWidth/dungeonHeight
 
   if (stageRatio < dungeonRatio){
     var arenaWidth = stageSize[0]
@@ -56,13 +56,16 @@ export const ArenaState = ({gameState= defaultState})=>{
 
   var dungeonPosition = [(stageSize[0] - arenaHeight)/2, (stageSize[1] - arenaWidth) / 2]
 
+  dungeonPosition = [margin,margin]
+
   var gladiatorData = gameState["gladiators"]
   var gladiatorElements = []
   var i = 0
 
   for (let gladiator of gladiatorData) {
-    var position_x = (gladiator.pos[0] - dungeonSize[1][0]) / dungeonWidth * arenaWidth
-    var position_y = (gladiator.pos[1] - dungeonSize[1][1]) / dungeonHeight * arenaHeight
+    // position from origin
+    var position_x = (gladiator.pos[0] - dungeonSize[0][0]) / dungeonWidth * arenaWidth
+    var position_y = (gladiator.pos[1] - dungeonSize[1][0]) / dungeonHeight * arenaHeight
     gladiatorElements.push(
       <Gladiator
         pos={[position_x + dungeonPosition[0], position_y + dungeonPosition[1]]}
