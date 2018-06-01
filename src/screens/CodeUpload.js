@@ -10,6 +10,7 @@ const CodeUpload =() => (
       <Segment>
         <FileUploadForm/>
         <Divider/>
+        <div>Preview:</div>
         <CodePreview/>
       </Segment>
     </Container>

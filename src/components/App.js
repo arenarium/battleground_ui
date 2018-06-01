@@ -13,21 +13,9 @@ import {
   Route,
 } from 'react-router-dom'
 
-import {fetchGames, doAutoPlay} from "../actions/GameViewer"
+
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    this.playing=false
-  }
-
-  componentDidMount(){
-    this.props.populateGameList("basic_game")
-    if (!this.playing){
-      this.playing=true
-      this.props.doAutoPlay(1500)
-    }
-  }
 
   render() {
     return (
@@ -61,14 +49,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    populateGameList: gameType => {
-      dispatch(fetchGames(gameType))
-    },
-    doAutoPlay: (delay) => {
-      dispatch(doAutoPlay(delay))
-    }
-  }
+  return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

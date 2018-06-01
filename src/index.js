@@ -15,6 +15,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 const store = createStore(
   battlegroundApp,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(
     thunkMiddleware, // lets us dispatch() functions
     // loggerMiddleware // neat middleware that logs actions

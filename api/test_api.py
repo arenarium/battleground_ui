@@ -54,3 +54,35 @@ def test_game_moves():
     assert len(states) == num_states
     assert isinstance(states[0], dict)
     assert len(states[0]) >= 1
+
+
+def test_code_upload():
+    owner = 'core'
+    name = 'test'
+    game_type = 'test_game'
+    code = """
+    from battleground.agent import Agent
+    import random
+
+
+    class BasicAgent(Agent):
+        def __init__(self, **kwargs):
+            super().__init__(**kwargs)
+
+        def move(self, state):
+            move = {}
+            return move
+    """
+
+    test_app = app.app.test_client()
+
+    data = {
+        'owner': owner,
+        'name': name,
+        'gameType': game_type,
+        'code': code,
+    }
+
+    response = test_app.post("/api/upload/", data=data)
+    assert response.status_code == 200
+    assert 'agent_id' in response.json.keys()

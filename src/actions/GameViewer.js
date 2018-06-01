@@ -128,8 +128,6 @@ export function fetchStates(gameID) {
 }
 
 
-
-
 export function doAutoPlay(delayTime) {
   return function (dispatch) {
     setTimeout(()=>{

@@ -1,12 +1,30 @@
-import React from 'react';
+import React,  { Component }  from 'react';
 import {connect} from "react-redux"
 import StateNav from "./StateNav"
 import ArenaState from './ArenaState'
 import {Divider, Grid, Container, Segment}  from 'semantic-ui-react'
 
-const GameStateViewer = ({gameState, textState})=>{
+import {fetchGames, doAutoPlay} from "../actions/GameViewer"
 
+class GameStateViewer extends Component {
+  constructor(props){
+    super(props)
+    this.playing=false
+  }
+
+  componentDidMount(){
+    this.props.populateGameList("basic_game")
+    if (!this.playing){
+      this.playing=true
+      this.props.doAutoPlay(1500)
+    }
+  }
+
+render(){
   var content
+  var gameState = this.props.gameState
+  var textState = this.props.textState
+
   if (gameState != null){
     var currentGameState = gameState["game_state"]
     var lastMove = gameState["last_move"]
@@ -59,6 +77,7 @@ const GameStateViewer = ({gameState, textState})=>{
     </div>
   );
 }
+}
 
 
 const mapStateToProps = state => {
@@ -70,7 +89,14 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    populateGameList: gameType => {
+      dispatch(fetchGames(gameType))
+    },
+    doAutoPlay: (delay) => {
+      dispatch(doAutoPlay(delay))
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameStateViewer)

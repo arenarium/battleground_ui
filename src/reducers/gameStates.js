@@ -6,7 +6,7 @@ function getTargetTurn(oldTurn,newTurn,maxTurn){
 
 function autoIncrement(state){
   if (state.autoPlay){
-    return getTargetTurn(state.stateIndex,state.stateIndex+1,state.stateArray.length-1);
+    return getTargetTurn(state.stateIndex, state.stateIndex + 1, state.stateArray.length - 1);
   }else {
     return state.stateIndex
   }
@@ -22,7 +22,7 @@ const gameStates = (state = {didInvalidate: true,
     case 'SELECT_TURN':
     return ({
       ...state,
-      stateIndex: getTargetTurn(state.stateIndex,action.turnNum,state.stateArray.length-1)
+      stateIndex: getTargetTurn(state.stateIndex, action.turnNum, state.stateArray.length - 1)
     })
 
     case 'AUTO_INCREMENT_TURN':
