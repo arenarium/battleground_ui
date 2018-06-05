@@ -13,7 +13,6 @@ class GameStateViewer extends Component {
   }
 
   componentDidMount(){
-    this.props.populateGameList("basic_game")
     if (!this.playing){
       this.playing=true
       this.props.doAutoPlay(1500)
@@ -55,7 +54,7 @@ render(){
         <Segment>
         <StateNav/>
         </Segment>
-        <Grid fluid celled='internally'>
+        <Grid fluid='true' celled='internally'>
           <Grid.Column width={12}>
             {gameStateContent}
           </Grid.Column>
@@ -90,9 +89,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    populateGameList: gameType => {
-      dispatch(fetchGames(gameType))
-    },
     doAutoPlay: (delay) => {
       dispatch(doAutoPlay(delay))
     }

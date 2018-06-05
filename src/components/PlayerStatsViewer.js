@@ -6,10 +6,10 @@ import GameTypeSelector from './GameTypeSelector'
 import PlayerStatsTable from './PlayerStatsTable'
 import {fetchStats} from '../actions/Stats'
 
-export const PlayerStatsViewer = ({playerStats, onTypeSelect}) => {
+export const PlayerStatsViewer = ({playerStats, gameType, onTypeSelect}) => {
   return (
     <Segment>
-      <GameTypeSelector onTypeSelect={onTypeSelect}/>
+      <GameTypeSelector value={gameType} onChange={onTypeSelect}/>
       <PlayerStatsTable playerStats={playerStats}/>
     </Segment>
   )
@@ -17,7 +17,8 @@ export const PlayerStatsViewer = ({playerStats, onTypeSelect}) => {
 
 const mapStateToProps = state => {
   return {
-    playerStats: state.playerStats.playerStats
+    playerStats: state.playerStats.playerStats,
+    gameType: state.gameList.gameType
   }
 }
 

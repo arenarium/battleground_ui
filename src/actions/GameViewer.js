@@ -31,7 +31,7 @@ import {SELECT_GAME, SELECT_TURN, SELECT_PAGE, REQUEST_GAMES,
     }
   }
 
-  export const receiveGames = (gameType,data) => {
+  export const receiveGames = (gameType, data) => {
     return {
       type: RECEIVE_GAMES,
       gameType,
@@ -47,7 +47,7 @@ import {SELECT_GAME, SELECT_TURN, SELECT_PAGE, REQUEST_GAMES,
     }
   }
 
-  export const receiveStates = (gameID,data) => {
+  export const receiveStates = (gameID, data) => {
     return {
       type: RECEIVE_STATES,
       gameID,

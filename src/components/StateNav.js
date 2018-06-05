@@ -9,7 +9,7 @@ import {changeAutoPlay, changeTextState, selectTurn} from "../actions/GameViewer
 export const StateNav = ({stateIndex, length, autoPlay, textState,
                           onChangeTextState, onChangeAutoPlay, onStateSelect})=>{
   return (
-    <Grid fluid textAlign='center'>
+    <Grid fluid="true" textAlign='center'>
       <Grid.Row >
         <Grid.Column width={2}>
           <Checkbox
@@ -26,7 +26,7 @@ export const StateNav = ({stateIndex, length, autoPlay, textState,
         <Grid.Column width={10}>
 
           <Input
-            fluid
+            fluid={true}
             min={1}
             max={length}
             onChange={(event)=>{onStateSelect(event.target.value)}}

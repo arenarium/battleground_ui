@@ -32,7 +32,7 @@ const Gladiator = ({color, pos}) => {
 }
 
 export const ArenaState = ({gameState= defaultState})=>{
-  console.log(gameState);
+  // console.log(gameState);
 
   // console.log(gameState);
   var dungeonData = gameState["dungeon"]
@@ -70,6 +70,7 @@ export const ArenaState = ({gameState= defaultState})=>{
       <Gladiator
         pos={[position_x + dungeonPosition[0], position_y + dungeonPosition[1]]}
         color={colors[i%colors.length]}
+        key={i}
         />
     )
     i+=1

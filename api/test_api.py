@@ -3,6 +3,7 @@ import json
 import sys
 
 sys.path.append("api")
+
 import app
 
 
@@ -83,6 +84,6 @@ def test_code_upload():
         'code': code,
     }
 
-    response = test_app.post("/api/upload/", data=data)
+    response = test_app.post("/api/upload/", data=json.dumps(data))
     assert response.status_code == 200
     assert 'agent_id' in response.json.keys()
