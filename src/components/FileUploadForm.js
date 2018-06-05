@@ -3,18 +3,18 @@ import {connect} from "react-redux"
 import {Form, Input} from 'semantic-ui-react'
 import {uploadFormChange, uploadFormSubmit} from '../actions/CodeUpload.js'
 
-const file_change = (e) => {
-  var selectedFile = e.files[0]
-  var reader = new FileReader();
-  //reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-  reader.onload = ((data) => {console.log(data.target.result);} )
-  reader.readAsText(selectedFile);
-  // console.log(selectedFile.name);
-  // console.log(selectedFile.file);
-  // console.log(e)
-  // console.log(e.type)
-  // console.log()
-}
+// const file_change = (e) => {
+//   var selectedFile = e.files[0]
+//   var reader = new FileReader();
+//   //reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+//   reader.onload = ((data) => {console.log(data.target.result);} )
+//   reader.readAsText(selectedFile);
+//   // console.log(selectedFile.name);
+//   // console.log(selectedFile.file);
+//   // console.log(e)
+//   // console.log(e.type)
+//   // console.log()
+// }
 
 class FileUploadForm extends Component {
   constructor(props) {

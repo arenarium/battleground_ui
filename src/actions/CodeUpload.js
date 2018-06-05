@@ -5,7 +5,7 @@ export const uploadFormChange = (target) => {
   const name = target.name
   const inputType = target.type
   var value = target.value
-  if (inputType == 'file'){
+  if (inputType === 'file'){
     return function (dispatch) {
       var selectedFile = target.files[0]
       var reader = new FileReader();

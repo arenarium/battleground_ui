@@ -1,18 +1,25 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from "react-redux"
 
-import {Segment, Table} from 'semantic-ui-react'
+import {Segment} from 'semantic-ui-react'
 import GameTypeSelector from './GameTypeSelector'
 import PlayerStatsTable from './PlayerStatsTable'
 import {fetchStats} from '../actions/Stats'
 
-export const PlayerStatsViewer = ({playerStats, gameType, onTypeSelect}) => {
-  return (
-    <Segment>
-      <GameTypeSelector value={gameType} onChange={onTypeSelect}/>
-      <PlayerStatsTable playerStats={playerStats}/>
-    </Segment>
-  )
+class PlayerStatsViewer extends Component {
+
+  componentDidMount(){
+    this.props.populateGameList(this.props.gameType)
+  }
+  render(){
+    var {playerStats, gameType, onTypeSelect} = this.props
+    return (
+      <Segment>
+        <GameTypeSelector value={gameType} onChange={onTypeSelect}/>
+        <PlayerStatsTable playerStats={playerStats}/>
+      </Segment>
+    )
+  }
 }
 
 const mapStateToProps = state => {

@@ -1,8 +1,7 @@
 import React from 'react'
 import GameSelector from '../components/GameSelector'
 import GameStateViewer from '../components/GameStateViewer'
-import {Segment, Container, Header, Button, Divider} from 'semantic-ui-react'
-import gameTypes from '../data/gameTypes'
+import {Segment, Container, Header, Divider} from 'semantic-ui-react'
 
 const GameViewer =() => (
   <Segment vertical>

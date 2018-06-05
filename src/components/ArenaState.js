@@ -1,6 +1,5 @@
 import React from 'react';
-import { connect } from "react-redux"
-import { Stage, Layer, Rect, Text, Circle, Group } from 'react-konva';
+import { Stage, Layer, Rect, Circle, Group } from 'react-konva';
 import { exampleGameState } from "../data/example_arena_game_state"
 
 let defaultState = JSON.parse(exampleGameState)
@@ -44,12 +43,14 @@ export const ArenaState = ({gameState= defaultState})=>{
   var stageRatio = stageSize[0]/stageSize[1]
   var dungeonRatio = dungeonWidth/dungeonHeight
 
+  var arenaWidth
+  var arenaHeight
   if (stageRatio < dungeonRatio){
-    var arenaWidth = stageSize[0]
-    var arenaHeight = stageSize[0] * dungeonHeight / dungeonWidth
+    arenaWidth = stageSize[0]
+    arenaHeight = stageSize[0] * dungeonHeight / dungeonWidth
   }else{
-    var arenaWidth = stageSize[1] / dungeonHeight * dungeonWidth
-    var arenaHeight = stageSize[1]
+    arenaWidth = stageSize[1] / dungeonHeight * dungeonWidth
+    arenaHeight = stageSize[1]
   }
   arenaWidth = arenaWidth - margin * 2
   arenaHeight = arenaHeight - margin * 2

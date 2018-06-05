@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from "react-redux"
-import {Dropdown, Grid, Container} from 'semantic-ui-react'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/styles/hljs';
 

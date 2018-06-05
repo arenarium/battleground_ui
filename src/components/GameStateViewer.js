@@ -2,9 +2,9 @@ import React,  { Component }  from 'react';
 import {connect} from "react-redux"
 import StateNav from "./StateNav"
 import ArenaState from './ArenaState'
-import {Divider, Grid, Container, Segment}  from 'semantic-ui-react'
+import {Grid, Segment}  from 'semantic-ui-react'
 
-import {fetchGames, doAutoPlay} from "../actions/GameViewer"
+import {doAutoPlay} from "../actions/GameViewer"
 
 class GameStateViewer extends Component {
   constructor(props){
@@ -30,7 +30,7 @@ class GameStateViewer extends Component {
 
       var gameStateContent = null
 
-      if (("dungeon" in currentGameState) & (textState==false)) {
+      if (("dungeon" in currentGameState) & (textState===false)) {
         if ('size' in currentGameState['dungeon']){
           gameStateContent = (
             <ArenaState gameState={currentGameState}></ArenaState>

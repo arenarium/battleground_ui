@@ -1,5 +1,5 @@
 import React from 'react';
-import {Segment, Table} from 'semantic-ui-react'
+import {Table} from 'semantic-ui-react'
 
 export const PlayerStatsViewer = ({playerStats}) => {
   let listItemArray=[]

@@ -11,7 +11,7 @@ class GameSelector extends Component {
   }
 
   render(){
-    var  {gameArray, selectedType, populateGameList, onTypeSelect, onGameSelect} = this.props
+    var  {gameArray, selectedType, onGameSelect} = this.props
     var onTypeSelect = this.props.onTypeSelect
     console.log(onTypeSelect);
     console.log(selectedType);
