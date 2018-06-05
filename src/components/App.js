@@ -8,19 +8,19 @@ import PlayerStats from "../screens/PlayerStats"
 import CodeUpload from "../screens/CodeUpload"
 import {AppNavigation} from '../components/AppNavigation'
 
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom'
+import {Route} from 'react-router-dom'
+import { ConnectedRouter} from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
 
-
+// Create a history of your choosing (we're using a browser history in this case)
+const history = createHistory()
 
 class App extends Component {
 
   render() {
     return (
       <div className="App">
-        <Router>
+        <ConnectedRouter history={history}>
           <div>
 
             <AppNavigation/>
@@ -29,27 +29,14 @@ class App extends Component {
             <Route  exact path="/games" component={GameViewer}/>
             <Route  exact path="/stats" component={PlayerStats}/>
             <Route  exact path="/upload" component={CodeUpload}/>
-            <Route  path="/games/:gameID/:stateIndex" component={GameViewer}>
-              <GameViewer/>
-            </Route>
+            <Route  path="/games/:gameID/:stateIndex" component={GameViewer}/>
+            <Route  path="/stats/:gameType/:owner/:agentName" component={PlayerStats}/>
           </div>
-        </Router>
+        </ConnectedRouter>
       </div>
 
     );
   }
 }
 
-const mapStateToProps = state => {
-
-  return {
-    gameID:state.gameID,
-    gameArray: state.gameArray
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

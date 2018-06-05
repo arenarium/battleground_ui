@@ -19,63 +19,63 @@ class GameStateViewer extends Component {
     }
   }
 
-render(){
-  var content
-  var gameState = this.props.gameState
-  var textState = this.props.textState
+  render(){
+    var content
+    var gameState = this.props.gameState
+    var textState = this.props.textState
 
-  if (gameState != null){
-    var currentGameState = gameState["game_state"]
-    var lastMove = gameState["last_move"]
+    if (gameState != null){
+      var currentGameState = gameState["game_state"]
+      var lastMove = gameState["last_move"]
 
-    var gameStateContent = null
+      var gameStateContent = null
 
-    if (("dungeon" in currentGameState) & (textState==false)) {
-      if ('size' in currentGameState['dungeon']){
+      if (("dungeon" in currentGameState) & (textState==false)) {
+        if ('size' in currentGameState['dungeon']){
+          gameStateContent = (
+            <ArenaState gameState={currentGameState}></ArenaState>
+          )
+        }
+      }
+      if (gameStateContent == null){
+        var gameStateString = JSON.stringify(currentGameState, null, 4)
         gameStateContent = (
-          <ArenaState gameState={currentGameState}></ArenaState>
+          <div>
+            <p>Game State:</p>
+            <pre>{gameStateString}</pre>
+          </div>
         )
       }
-    }
-    if (gameStateContent == null){
-      var gameStateString = JSON.stringify(currentGameState, null, 4)
-      gameStateContent = (
+
+
+      var lastMoveString = JSON.stringify(lastMove, null, 4)
+      content = (
         <div>
-          <p>Game State:</p>
-          <pre>{gameStateString}</pre>
+          <Segment>
+            <StateNav/>
+          </Segment>
+          <Grid fluid='true' celled='internally'>
+            <Grid.Column width={12}>
+              {gameStateContent}
+            </Grid.Column>
+            <Grid.Column width={4}>
+              <p>Messages:</p>
+              <pre>{lastMoveString}</pre>
+            </Grid.Column>
+          </Grid>
         </div>
       )
+    } else {
+      content = (<p>Select a game to view.</p>)
     }
 
 
-    var lastMoveString = JSON.stringify(lastMove, null, 4)
-    content = (
-      <div>
-        <Segment>
-        <StateNav/>
-        </Segment>
-        <Grid fluid='true' celled='internally'>
-          <Grid.Column width={12}>
-            {gameStateContent}
-          </Grid.Column>
-          <Grid.Column width={4}>
-            <p>Messages:</p>
-            <pre>{lastMoveString}</pre>
-          </Grid.Column>
-        </Grid>
+    return (
+      <div className="StateArrayViewer">
+        {content}
       </div>
-    )
-  } else {
-    content = (<p>Select a game to view.</p>)
+    );
   }
-
-
-  return (
-    <div className="StateArrayViewer">
-      {content}
-    </div>
-  );
-}
 }
 
 
