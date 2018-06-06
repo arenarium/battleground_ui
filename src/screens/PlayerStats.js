@@ -20,7 +20,7 @@ class PlayerStats extends Component {
     } else {
       selector='none'
     }
-    
+
     switch (selector) {
       case 'agent':
       content = <SinglePlayerStats match={this.props.match}/>

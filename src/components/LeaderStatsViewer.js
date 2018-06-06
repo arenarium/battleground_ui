@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux"
-import {push} from 'react-router-redux'
+// import {push} from 'react-router-redux'
 
 import {Segment} from 'semantic-ui-react'
 import GameTypeSelector from './GameTypeSelector'

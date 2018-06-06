@@ -86,6 +86,7 @@ import {SELECT_GAME, SELECT_TURN, SELECT_PAGE, REQUEST_GAMES,
       // that the API call is starting.
 
       dispatch(requestGames(gameType))
+      dispatch(selectGame(null))
 
       // The function called by the thunk middleware can return a value,
       // that is passed on as the return value of the dispatch method.

@@ -2,7 +2,7 @@
 // Reducers take a subset of the application state and an action as input
 // Reducers return an updated state.
 
-const gameList = (state = {didInvalidate: true, gameArray:[], gameType:'arena_game_pos'}, action) => {
+const gameList = (state = {didInvalidate: true, gameArray:[], gameType:'arena_game_pos', gameID:null}, action) => {
   switch (action.type) {
     case 'SELECT_GAME':
     return ({
