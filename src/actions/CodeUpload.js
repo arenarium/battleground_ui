@@ -14,46 +14,46 @@ export const uploadFormChange = (target) => {
         dispatch({type: CODE_UPLOAD_ON_CHANGE,
           name,
           value: data.target.result})
+        }
+
+        reader.readAsText(selectedFile);
       }
-
-      reader.readAsText(selectedFile);
+    }
+    else{
+      value = target.value
+      return {
+        type: CODE_UPLOAD_ON_CHANGE,
+        name,
+        value
+      }
     }
   }
-  else{
-    value = target.value
-  return {
-    type: CODE_UPLOAD_ON_CHANGE,
-    name,
-    value
-  }
-}
-}
 
 
-export const uploadFormSubmit = (formData) => {
-  return function (dispatch) {
-    dispatch({type: CODE_UPLOAD_START})
-    if (!('owner' in formData)){
-      formData['owner'] = 'Web'
-    }
-    return fetch('/api/upload/', {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify(formData)
-    })
-    .then(
-      response => response.json(),
-      error => {
-        dispatch({type: CODE_UPLOAD_FAIL, error:error})
-        console.log('An error occured.', error)
+  export const uploadFormSubmit = (formData) => {
+    return function (dispatch) {
+      dispatch({type: CODE_UPLOAD_START})
+      if (!('owner' in formData)){
+        formData['owner'] = 'Web'
+      }
+      return fetch('/api/upload/', {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(formData)
+      })
+      .then(
+        response => response.json(),
+        error => {
+          dispatch({type: CODE_UPLOAD_FAIL, error:error})
+          console.log('An error occured.', error)
+        }
+      )
+      .then(json =>{
+        dispatch({type: CODE_UPLOAD_SUCCESS})
       }
     )
-    .then(json =>{
-      dispatch({type: CODE_UPLOAD_SUCCESS})
-    }
-  )
-}
+  }
 }

@@ -1,27 +1,34 @@
 import React from 'react';
 import {Table} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
-export const PlayerStatsViewer = ({playerStats}) => {
+
+export const LeaderBoardTable = ({playerStats, onClick}) => {
+  // console.log(playerStats);
   let listItemArray=[]
   let i=0
   for (let key in playerStats) {
     if (playerStats.hasOwnProperty(key)) {
 
-      let owner = playerStats[key][0]
-      let playerName = playerStats[key][1]
-      let wins = playerStats[key][2]
+      let id = playerStats[key][0]
+      let owner = playerStats[key][1]
+      let playerName = playerStats[key][2]
+      let wins = playerStats[key][3]
 
       listItemArray.push(
-        <Table.Row key={i}>
+        <Table.Row key={i} onClick={()=>{onClick('/stats/agent/'+id)}}>
           <Table.Cell>
             {owner}
           </Table.Cell>
           <Table.Cell>
+            <Link to={'/stats/agent/'+id}>
             {playerName}
+            </Link>
           </Table.Cell>
           <Table.Cell>
             {wins}
           </Table.Cell>
+
         </Table.Row>
       )
       i+=1;
@@ -29,7 +36,7 @@ export const PlayerStatsViewer = ({playerStats}) => {
   }
 
   return (
-    <Table celled padded>
+    <Table celled padded selectable>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Owner</Table.HeaderCell>
@@ -45,4 +52,4 @@ export const PlayerStatsViewer = ({playerStats}) => {
   )
 }
 
-export default PlayerStatsViewer
+export default LeaderBoardTable

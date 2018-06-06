@@ -25,11 +25,16 @@ class App extends Component {
             <AppNavigation/>
             <Route exact path="/" component={Welcome}/>
             <Route  path="/about" component={About}/>
+
             <Route  exact path="/games" component={GameViewer}/>
-            <Route  exact path="/stats" component={PlayerStats}/>
-            <Route  exact path="/upload" component={CodeUpload}/>
+            <Route  path="/games/:gameID" component={GameViewer}/>
             <Route  path="/games/:gameID/:stateIndex" component={GameViewer}/>
-            <Route  path="/stats/:gameType/:owner/:agentName" component={PlayerStats}/>
+
+            <Route  exact path="/upload" component={CodeUpload}/>
+
+            <Route  exact path="/stats" component={PlayerStats}/>
+            <Route  path="/stats/:selector/:id" component={PlayerStats}/>
+
           </div>
         </ConnectedRouter>
       </div>

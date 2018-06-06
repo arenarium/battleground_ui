@@ -55,6 +55,16 @@ def get_game_results(game_type):
     return jsonify(data)
 
 
+@app.route("/api/agents/<agent_id>")
+def get_agent_results(agent_id):
+    data = agent_data.load_agent_results(agent_id=agent_id, limit=10)
+    output = []
+    for doc in data:
+        doc["_id"] = str(doc["_id"])
+        output.append(doc)
+    return jsonify(data)
+
+
 @app.route("/api/upload/", methods=["POST"])
 def upload_code():
     if request.method == "POST":

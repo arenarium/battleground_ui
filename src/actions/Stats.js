@@ -1,10 +1,24 @@
-import {REQUEST_PLAYER_STATS, RECEIVE_PLAYER_STATS} from "./index"
+import {REQUEST_PLAYER_STATS, RECEIVE_PLAYER_STATS, RECEIVE_LEADER_STATS, REQUEST_LEADER_STATS} from "./index"
 
 
-export const requestPlayerStats = gameType => {
+export const requestLeaderStats = gameType => {
+  return {
+    type: REQUEST_LEADER_STATS,
+    gameType
+  }
+}
+
+export const receiveLeaderStats = data => {
+  return {
+    type: RECEIVE_LEADER_STATS,
+    data
+  }
+}
+
+export const requestPlayerStats = agentID => {
   return {
     type: REQUEST_PLAYER_STATS,
-    gameType
+    agentID
   }
 }
 
@@ -15,10 +29,26 @@ export const receivePlayerStats = data => {
   }
 }
 
-export function fetchStats(gameType) {
+export function fetchLeaderStats(gameType) {
   return function (dispatch) {
-    dispatch(requestPlayerStats(gameType))
+    dispatch(requestLeaderStats(gameType))
     return fetch('/api/stats/'+gameType)
+    .then(
+      response => response.json(),
+      error => console.log('An error occured.', error)
+    )
+    .then(json =>{
+      dispatch(receiveLeaderStats(json))
+    }
+  )
+  }
+}
+
+
+export function fetchSinglePlayerStats(agentID) {
+  return function (dispatch) {
+    dispatch(requestPlayerStats(agentID))
+    return fetch('/api/agents/'+agentID)
     .then(
       response => response.json(),
       error => console.log('An error occured.', error)
@@ -27,5 +57,5 @@ export function fetchStats(gameType) {
       dispatch(receivePlayerStats(json))
     }
   )
-}
+  }
 }

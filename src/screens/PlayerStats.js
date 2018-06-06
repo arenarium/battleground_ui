@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import PlayerStatsViewer from '../components/PlayerStatsViewer'
+import {connect} from "react-redux"
+
+import LeaderStatsViewer from '../components/LeaderStatsViewer'
+import SinglePlayerStats from '../components/SinglePlayerStats'
+
 import {Container, Segment} from 'semantic-ui-react'
 
 class PlayerStats extends Component {
@@ -8,15 +12,39 @@ class PlayerStats extends Component {
   }
 
   render(){
+    console.log(this.props.match);
+    var content
+    var selector
+    if ('selector' in this.props.match.params){
+      selector = this.props.match.params.selector
+    } else {
+      selector='none'
+    }
+    
+    switch (selector) {
+      case 'agent':
+      content = <SinglePlayerStats match={this.props.match}/>
+      break
+      default:
+      content = <LeaderStatsViewer/>
+    }
+
     return(
       <Segment vertical>
         <Container>
-          <PlayerStatsViewer/>
+          {content}
         </Container>
       </Segment>
     )
   }
 }
 
-export default PlayerStats;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    match: ownProps.match,
+    location: ownProps.location
+  }
+}
+
+export default connect(mapStateToProps)(PlayerStats)
 //
