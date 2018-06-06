@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {connect} from "react-redux"
 
 import {Segment} from 'semantic-ui-react'
-import GameTypeSelector from './GameTypeSelector'
-import LeaderBoardTable from './LeaderBoardTable'
 import {fetchSinglePlayerStats} from '../actions/Stats'
 
 import {Table} from 'semantic-ui-react'

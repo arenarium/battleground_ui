@@ -16,7 +16,7 @@ class LeaderStatsViewer extends Component {
 
   render(){
     console.log(this.props)
-    var {playerStats, gameType, onTypeSelect, onClickRow} = this.props
+    var {playerStats, gameType, onTypeSelect} = this.props
     return (
       <Segment>
         <GameTypeSelector value={gameType} onChange={onTypeSelect}/>

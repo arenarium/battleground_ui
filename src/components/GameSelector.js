@@ -26,7 +26,7 @@ class GameSelector extends Component {
     for (let key in gameArray) {
       if (gameArray.hasOwnProperty(key)) {
         let gameID = gameArray[key]["_id"]
-        if (gameID==this.props.gameID){
+        if (gameID === this.props.gameID){
           containsSelected = true
         }
         let gameType = gameArray[key]["game_type"]
