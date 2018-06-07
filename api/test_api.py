@@ -79,11 +79,14 @@ def test_code_upload():
 
     data = {
         'owner': owner,
-        'name': name,
+        'agentName': name,
         'gameType': game_type,
-        'code': code,
+        'file': code,
     }
 
-    response = test_app.post("/api/upload/", data=json.dumps(data))
+    response = test_app.post("/api/upload/",
+                             data=json.dumps(data),
+                             headers={'Content-Type' :'application/json'})
+    print(response)
     assert response.status_code == 200
     assert 'agent_id' in response.json.keys()
