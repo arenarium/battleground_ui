@@ -8,20 +8,20 @@ services:
     ports:
       - 27017:27017
 
-  uwsgi:
-    image: battleground/uwsgi:latest
+  arenarium_api:
+    image: battleground/arenarium_api:latest
     build: ./api
     depends_on:
       - mongo
     environment:
       - MONGO_HOST=mongo:27017
 
-  nginx:
-    image: battleground/nginx:latest
+  arenarium_web:
+    image: battleground/arenarium_web:latest
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - uwsgi
+      - arenarium_api
     ports:
-      - 5000:80
+      - 80:80
