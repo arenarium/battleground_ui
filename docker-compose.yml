@@ -20,7 +20,7 @@ services:
     image: battleground/nginx:latest
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     depends_on:
       - uwsgi
     ports:

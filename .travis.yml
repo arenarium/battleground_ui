@@ -11,6 +11,7 @@ before_script:
 - export PYTHONPATH=$PYTHONPATH:$(pwd)
 - docker-compose -f docker-compose.yml up --build -d
 - docker build -t battleground/arenarium_api ./api/
+- docker build -t battleground/arenarium_web .
 - docker run --network=host  battleground/arenarium_api sh ./test_init.sh
 script: docker run --network=host  battleground/arenarium_api pytest test_api.py
 after_success:
