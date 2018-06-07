@@ -1,41 +1,69 @@
 import React from 'react';
-import {  Row, Col,Grid,Pager, Form,FormGroup,ControlLabel,FormControl,Checkbox} from 'react-bootstrap';
+import {connect} from "react-redux"
 
-export const StateNav = ({stateIndex, length, autoPlay, onChangeAutoPlay, onStateSelect})=>{
+import {  Grid,Checkbox, Input} from 'semantic-ui-react';
+
+import {changeAutoPlay, changeTextState, selectTurn} from "../actions/GameViewer"
+
+
+export const StateNav = ({stateIndex, length, autoPlay, textState,
+                          onChangeTextState, onChangeAutoPlay, onStateSelect})=>{
   return (
-<Grid fluid>
-  <Row >
-    <Col xs={4} md={3}>
-      <Pager style={{margin:0}}>
-        <Pager.Item onClick={()=>onStateSelect(stateIndex-1)}>Previous</Pager.Item>
-      </Pager>
-    </Col>
-    <Col xs={4} md={4}>
-      <Form inline style={{textAlign:"center"}}>
-        <FormGroup controlId="formBasicText">
+    <Grid fluid="true" textAlign='center'>
+      <Grid.Row >
+        <Grid.Column width={2}>
           <Checkbox
             checked={autoPlay}
             onChange={onChangeAutoPlay}
-            style={{marginRight:"2em"}}>
-            Autoplay
-          </Checkbox>
-          <FormControl
-            type="text"
-            value={stateIndex}
-            placeholder="Enter text"
+            style={{marginRight:"2em"}} label="Autoplay"/>
+        </Grid.Column>
+        <Grid.Column width={2}>
+          <Checkbox
+            checked={textState}
+            onChange={onChangeTextState}
+            style={{marginRight:"2em"}} label="Show Raw State"/>
+        </Grid.Column>
+        <Grid.Column width={10}>
+
+          <Input
+            fluid={true}
+            min={1}
+            max={length}
             onChange={(event)=>{onStateSelect(event.target.value)}}
-            style={{width:"5em"}}
-          />
-          <ControlLabel>/{length}</ControlLabel>
-        </FormGroup>
-      </Form>
-    </Col>
-    <Col xs={4} md={3}>
-      <Pager style={{margin:0}}>
-        <Pager.Item onClick={()=>{onStateSelect(stateIndex+1)}}>Next</Pager.Item>
-      </Pager>
-    </Col>
-  </Row>
-</Grid>
-)
+            type={'range'}
+            value={stateIndex}
+            />
+        </Grid.Column>
+        <Grid.Column width={2}>
+          <p>{"Turn: "+String(stateIndex)+"/"+String(length)}</p>
+
+        </Grid.Column>
+
+      </Grid.Row>
+    </Grid>
+  )
 }
+
+
+const mapStateToProps = state => {
+  return {
+    // gameID:state.gameID,
+    stateIndex:state.gameStates.stateIndex,
+    length:state.gameStates.stateArray.length-1,
+    autoPlay:state.gameStates.autoPlay,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onChangeTextState: ()=> dispatch(changeTextState()),
+    onChangeAutoPlay: ()=> dispatch(changeAutoPlay()),
+    onStateSelect: (turnNum) => {
+      if (!isNaN(parseInt(turnNum,10))){
+        dispatch(selectTurn(parseInt(turnNum,10)))
+      }
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StateNav)

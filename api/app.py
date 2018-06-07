@@ -2,9 +2,7 @@
 rest interface
 """
 
-from flask import Flask, request, jsonify
-from os import path, environ
-import json
+from flask import Flask, jsonify, request
 
 from battleground.persistence import game_data
 from battleground.persistence import agent_data
@@ -51,10 +49,37 @@ def get_games_types():
     return jsonify(output)
 
 
-@app.route("/api/stats/")
-def get_game_results():
-    data = agent_data.load_game_results(game_type="basic_game")
+@app.route("/api/stats/<game_type>")
+def get_game_results(game_type):
+    data = agent_data.load_game_results(game_type=game_type)
     return jsonify(data)
+
+
+@app.route("/api/agents/<agent_id>")
+def get_agent_results(agent_id):
+    data = agent_data.load_agent_results(agent_id=agent_id, limit=10)
+    output = []
+    for doc in data:
+        doc["_id"] = str(doc["_id"])
+        output.append(doc)
+    return jsonify(data)
+
+
+@app.route("/api/upload/", methods=["POST"])
+def upload_code():
+    if request.method == "POST":
+        # try:
+            values = request.get_json()
+            owner = values['owner']
+            name = values['agentName']
+            game_type = values['gameType']
+            code = values['file']
+            agent_id = agent_data.save_agent_code(owner, name, game_type, code)
+            return jsonify({'agent_id': str(agent_id)})
+        # except Exception as e:
+        #     return jsonify({'error': str(e)}), 500
+    else:
+        return jsonify({'error': 'use method POST'}), 500
 
 
 @app.route("/api/")

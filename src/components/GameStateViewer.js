@@ -1,81 +1,98 @@
-import React from 'react';
-// import {  Row, Col,Grid,Pager, Form,FormGroup,ControlLabel,FormControl,Checkbox} from 'react-bootstrap';
-import StateNavContainer from '../containers/StateNavContainer'
-// const MyPagination = withRouter(({numItems, newActivePage, history})=>(
-// // {(eventKey)=>{history.push("../"+String(eventKey)+"/")}}
-//   )
-// )
-//,stateIndex,length,autoPlay,onChangeAutoPlay ,onStateSelect
-const GameStateViewer = ({gameState})=>{
+import React,  { Component }  from 'react';
+import {connect} from "react-redux"
+import StateNav from "./StateNav"
+import ArenaState from './ArenaState'
+import {Grid, Segment}  from 'semantic-ui-react'
 
+import {doAutoPlay} from "../actions/GameViewer"
+
+class GameStateViewer extends Component {
+  constructor(props){
+    super(props)
+    this.playing=false
+  }
+
+  componentDidMount(){
+    if (!this.playing){
+      this.playing=true
+      this.props.doAutoPlay(1500)
+    }
+  }
+
+  render(){
     var content
+    var gameState = this.props.gameState
+    var textState = this.props.textState
+
     if (gameState != null){
       var currentGameState = gameState["game_state"]
       var lastMove = gameState["last_move"]
-      var gameStateString = JSON.stringify(currentGameState, null, 4)
-      var lastMoveString = JSON.stringify(lastMove, null, 4)
-      content = (
-        <div>
-          <StateNavContainer/>
-          <p>Last Move:</p>
-          <pre>{lastMoveString}</pre>
-          <p>Game State</p>
-          <pre>{gameStateString}</pre>
-        </div>)
-      }else {
-        content = (<p>Select a game to view.</p>)
+
+      var gameStateContent = null
+
+      if (("dungeon" in currentGameState) & (textState===false)) {
+        if ('size' in currentGameState['dungeon']){
+          gameStateContent = (
+            <ArenaState gameState={currentGameState}></ArenaState>
+          )
+        }
+      }
+      if (gameStateContent == null){
+        var gameStateString = JSON.stringify(currentGameState, null, 4)
+        gameStateContent = (
+          <div>
+            <p>Game State:</p>
+            <pre>{gameStateString}</pre>
+          </div>
+        )
       }
 
 
-      return (
-        <div className="StateArrayViewer">
-          {content}
+      var lastMoveString = JSON.stringify(lastMove, null, 4)
+      content = (
+        <div>
+          <Segment>
+            <StateNav/>
+          </Segment>
+          <Grid fluid='true' celled='internally'>
+            <Grid.Column width={12}>
+              {gameStateContent}
+            </Grid.Column>
+            <Grid.Column width={4}>
+              <p>Messages:</p>
+              <pre>{lastMoveString}</pre>
+            </Grid.Column>
+          </Grid>
         </div>
-      );
+      )
+    } else {
+      content = (<p>Select a game to view.</p>)
     }
-// class StateArrayViewer extends Component {
-//   constructor(props){
-//     super(props)
-//     this.doAutoPlay = this.doAutoPlay.bind(this)
-//     this.onChangeAutoPlay = this.onChangeAutoPlay.bind(this)
-//     // this.autoPlay = true
-//     this.playing=false
-//     this.state={autoPlay:true}
-//
-//   }
-//
-//   onChangeAutoPlay(event){
-//     if(this.state.autoPlay){
-//       this.playing=false
-//     }
-//     this.setState({autoPlay:!this.state.autoPlay})
-//   }
-//
-//   doAutoPlay() {
-//     if (this.state.autoPlay){
-//       if (this.props.states != null){
-//         if(this.props.stateIndex<this.props.states.length){
-//           this.playing=true
-//           this.props.onNextSelect()
-//           setTimeout(this.doAutoPlay, 2000)
-//         }}
-//       }
-//     }
-//
-//     componentDidMount(){
-//       if (!this.playing){
-//         this.doAutoPlay()
-//       }
-//     }
-//
-//     componentDidUpdate(){
-//       if (!this.playing){
-//         this.doAutoPlay()
-//       }
-//     }
-//
-//
-//     render() {
-//     }
 
-    export default GameStateViewer;
+
+    return (
+      <div className="StateArrayViewer">
+        {content}
+      </div>
+    );
+  }
+}
+
+
+const mapStateToProps = state => {
+  // do work here
+  return {
+    gameState:state.gameStates.stateArray[state.gameStates.stateIndex],
+    textState:state.gameStates.textState,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    doAutoPlay: (delay) => {
+      dispatch(doAutoPlay(delay))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameStateViewer)

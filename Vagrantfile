@@ -30,9 +30,10 @@ Vagrant.configure("2") do |config|
   # via 127.0.0.1 to disable public access
   #config.vm.network "forwarded_port", guest: 8888, host: 8888, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 80, host: 8000, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 5984, host: 5984, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 9009, host: 9009, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 3000, host: 3000, host_ip: "127.0.0.1"
   config.vm.network "forwarded_port", guest: 5000, host: 5000, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 8081, host: 8081, host_ip: "127.0.0.1"
 
 
 
@@ -77,13 +78,31 @@ Vagrant.configure("2") do |config|
 
   #couchdb instance for testing
   config.vm.provision "docker" do |d|
-    d.run "mongodb"
-    #   args: "-p 5984:5984"
+    d.run "mongo",
+      image: "mongo:3.4",
+      args: "-v '/data:/data/db' -p 27017:27017"
+    d.run "mongo-express",
+      image: "mongo-express",
+      args: "--link mongo:mongo -p 8081:8081"
   end
 
   config.vm.provision "shell", path: "bootstrap.sh"
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
+
+  git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+  cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+  sudo chsh -s /bin/zsh $(whoami)
+
+  echo "
+  export LC_ALL=C.UTF-8
+  export LANG=C.UTF-8
+
+  source ~/python3/bin/activate
+  cd /vagrant
+  export PYTHONPATH=$PYTHONPATH:/vagrant
+  " >> .zshrc
+
   pyvenv python3
   . ./python3/bin/activate
   pip install --upgrade pip
@@ -91,6 +110,7 @@ Vagrant.configure("2") do |config|
 
   cd /vagrant
   pip install -r api/requirements.txt
+  yarn install
   SHELL
 
 end

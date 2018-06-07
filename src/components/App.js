@@ -1,51 +1,46 @@
 import React, { Component } from 'react';
-import './styles/App.css';
-import Header from "./Header"
-import Welcome from "./Welcome"
-import About from "./About"
-import GameViewer from "./GameViewer"
-import PlayerStats from "./PlayerStats"
-import CodeUpload from "./CodeUpload"
-import {
-  BrowserRouter as Router,
-  Route,
-} from 'react-router-dom'
+import '../styles/App.css';
+import Welcome from "../screens/Welcome"
+import About from "../screens/About"
+import GameViewer from "../screens/GameViewer"
+import PlayerStats from "../screens/PlayerStats"
+import CodeUpload from "../screens/CodeUpload"
+import {AppNavigation} from '../components/AppNavigation'
 
+import {Route} from 'react-router-dom'
+import { ConnectedRouter} from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
+
+// Create a history of your choosing (we're using a browser history in this case)
+const history = createHistory()
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    this.playing=false
-  }
-
-componentDidMount(){
-  this.props.populateGameList("default")
-  if (!this.playing){
-    this.playing=true
-    this.props.doAutoPlay(1500)
-  }
-}
 
   render() {
     return (
       <div className="App">
-        <Router>
+        <ConnectedRouter history={history}>
           <div>
-            <Header/>
+
+            <AppNavigation/>
             <Route exact path="/" component={Welcome}/>
             <Route  path="/about" component={About}/>
+
             <Route  exact path="/games" component={GameViewer}/>
-            <Route  exact path="/stats" component={PlayerStats}/>
+            <Route  path="/games/:gameID" component={GameViewer}/>
+            <Route  path="/games/:gameID/:stateIndex" component={GameViewer}/>
+
             <Route  exact path="/upload" component={CodeUpload}/>
-            <Route  path="/games/:gameID/:stateIndex" component={GameViewer}>
-              <GameViewer/>
-              </Route>
+
+            <Route  exact path="/stats" component={PlayerStats}/>
+            <Route  path="/stats/:selector/:id" component={PlayerStats}/>
+
           </div>
-        </Router>
-    </div>
+        </ConnectedRouter>
+      </div>
 
-  );
-}
+    );
+  }
 }
 
-export default App;
+export default App
