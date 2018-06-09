@@ -68,7 +68,7 @@ def get_agent_results(agent_id):
 @app.route("/api/upload/", methods=["POST"])
 def upload_code():
     if request.method == "POST":
-        # try:
+        try:
             values = request.get_json()
             owner = values['owner']
             name = values['agentName']
@@ -76,8 +76,8 @@ def upload_code():
             code = values['file']
             agent_id = agent_data.save_agent_code(owner, name, game_type, code)
             return jsonify({'agent_id': str(agent_id)})
-        # except Exception as e:
-        #     return jsonify({'error': str(e)}), 500
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
     else:
         return jsonify({'error': 'use method POST'}), 500
 
