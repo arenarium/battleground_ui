@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Menu, Container, Segment, Icon} from 'semantic-ui-react'
+import { Menu, Segment, Icon} from 'semantic-ui-react'
 
 export const AppNavigation = () =>(
 <Segment inverted vertical className='welcome'>
