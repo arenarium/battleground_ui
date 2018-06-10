@@ -131,8 +131,8 @@ export function fetchStates(gameID) {
 
 export function doAutoPlay(delayTime) {
   return function (dispatch) {
+    dispatch(autoIncrementTurn())
     setTimeout(()=>{
-      dispatch(autoIncrementTurn())
       dispatch(doAutoPlay(delayTime))
     },
     delayTime);

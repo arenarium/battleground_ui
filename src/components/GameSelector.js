@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from "react-redux"
 import {Dropdown, Grid, Container} from 'semantic-ui-react'
 import {GameTypeSelector} from './GameTypeSelector'
-import {selectGame, fetchStates, fetchGames} from "../actions/GameViewer"
+import {selectGame, fetchStates, fetchGames, selectTurn} from "../actions/GameViewer"
 import {push} from 'react-router-redux'
 
 class GameSelector extends Component {
@@ -36,7 +36,7 @@ class GameSelector extends Component {
       }
     }
 
-    if (this.props.gameID & !containsSelected){
+    if (this.props.gameID && !containsSelected){
       gameOptions.push(
       {text: selectedType + ": " + this.props.gameID.substring(10,), value: this.props.gameID}
       )
@@ -90,6 +90,7 @@ onTypeSelect: gameType => {
   // console.log(gameType);
   dispatch(fetchGames(gameType))},
 onGameSelect: id => {
+  dispatch(selectTurn(1))
   dispatch(selectGame(id))
   dispatch(push('/games/'+id))
   dispatch(fetchStates(id))

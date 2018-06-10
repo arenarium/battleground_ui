@@ -16,7 +16,8 @@ const gameStates = (state = {didInvalidate: true,
                              stateArray:[],
                              stateIndex:0,
                              autoPlay:true,
-                             textState: false},
+                             textState: false,
+                              isPlaying: false},
                     action) => {
   switch (action.type) {
     case 'SELECT_TURN':
@@ -28,7 +29,8 @@ const gameStates = (state = {didInvalidate: true,
     case 'AUTO_INCREMENT_TURN':
     return ({
       ...state,
-      stateIndex: autoIncrement(state)
+      stateIndex: autoIncrement(state),
+      isPlaying:true
     })
 
     case 'REQUEST_STATES':

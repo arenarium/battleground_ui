@@ -13,9 +13,9 @@ class GameStateViewer extends Component {
   }
 
   componentDidMount(){
-    if (!this.playing){
+    if (!this.props.isPlaying){
       this.playing=true
-      this.props.doAutoPlay(1500)
+      this.props.doAutoPlay(500)
     }
   }
 
@@ -69,7 +69,6 @@ class GameStateViewer extends Component {
       content = (<p>Select a game to view.</p>)
     }
 
-
     return (
       <div className="StateArrayViewer">
         {content}
@@ -84,6 +83,7 @@ const mapStateToProps = state => {
   return {
     gameState:state.gameStates.stateArray[state.gameStates.stateIndex],
     textState:state.gameStates.textState,
+    isPlaying: state.gameStates.isPlaying
   }
 }
 
