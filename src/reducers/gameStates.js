@@ -12,13 +12,18 @@ function autoIncrement(state){
   }
 }
 
-const gameStates = (state = {didInvalidate: true,
-                             stateArray:[],
-                             stateIndex:0,
-                             autoPlay:true,
-                             textState: false,
-                              isPlaying: false},
-                    action) => {
+const defaultState = {
+  didInvalidate: true,
+  players: [],
+  stateArray:[],
+  stateIndex:0,
+  autoPlay:true,
+  textState: false,
+  isPlaying: false
+}
+
+
+const gameStates = (state = defaultState, action) => {
   switch (action.type) {
     case 'SELECT_TURN':
     return ({

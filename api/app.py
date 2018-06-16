@@ -10,14 +10,6 @@ from battleground.persistence import agent_data
 app = Flask(__name__)
 
 
-def do_move(game_id, data):
-    raise NotImplementedError()
-
-
-def get_players():
-    raise NotImplementedError()
-
-
 @app.route("/api/states/<game_id>")
 def get_game_states(game_id):
     data = game_data.load_game_history(game_id)
@@ -55,14 +47,24 @@ def get_game_results(game_type):
     return jsonify(data)
 
 
-@app.route("/api/agents/<agent_id>")
+@app.route("/api/agents/meta/<agent_id>")
+def get_agent_meta_data(agent_id):
+    try:
+        meta_data = agent_data.get_agents(agent_id=agent_id)[0]
+        meta_data['_id'] = str(meta_data['_id'])
+        return jsonify(meta_data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route("/api/agents/results/<agent_id>")
 def get_agent_results(agent_id):
-    data = agent_data.load_agent_results(agent_id=agent_id, limit=10)
+    results = agent_data.load_agent_results(agent_id=agent_id, limit=10)
     output = []
-    for doc in data:
+    for doc in results:
         doc["_id"] = str(doc["_id"])
         output.append(doc)
-    return jsonify(data)
+    return jsonify(output)
 
 
 @app.route("/api/upload/", methods=["POST"])

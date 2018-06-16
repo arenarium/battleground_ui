@@ -40,6 +40,41 @@ def test_games_list_selector():
     assert len(games_list) > 0
 
 
+def test_stats():
+    test_app = app.app.test_client()
+
+    # this game type should not exist
+    response = test_app.get("/api/stats/arena_game_pos")
+    assert response.status_code == 200
+
+    data = response.data.decode()
+    data = json.loads(data)
+
+    assert len(data) > 0
+
+    for item in data:
+        assert len(item) == 4
+
+    return data
+
+
+def test_agent_meta_data():
+    stats = test_stats()
+
+    agent_id = stats[0][0]
+
+    test_app = app.app.test_client()
+
+    # this game type should not exist
+    response = test_app.get("/api/agents/meta/{}".format(agent_id))
+    assert response.status_code == 200
+
+    data = response.data.decode()
+    data = json.loads(data)
+
+    print(data)
+
+
 def test_game_moves():
     games_list = test_games_list()
     test_app = app.app.test_client()
@@ -86,7 +121,7 @@ def test_code_upload():
 
     response = test_app.post("/api/upload/",
                              data=json.dumps(data),
-                             headers={'Content-Type' :'application/json'})
+                             headers={'Content-Type': 'application/json'})
     print(response)
     assert response.status_code == 200
     assert 'agent_id' in response.json.keys()

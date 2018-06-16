@@ -48,7 +48,7 @@ export function fetchLeaderStats(gameType) {
 export function fetchSinglePlayerStats(agentID) {
   return function (dispatch) {
     dispatch(requestPlayerStats(agentID))
-    return fetch('/api/agents/'+agentID)
+    return fetch('/api/agents/results/'+agentID)
     .then(
       response => response.json(),
       error => console.log('An error occured.', error)

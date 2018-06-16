@@ -2,7 +2,8 @@ import React,  { Component }  from 'react';
 import {connect} from "react-redux"
 import StateNav from "./StateNav"
 import ArenaState from './ArenaState'
-import {Grid, Segment}  from 'semantic-ui-react'
+import CurrentPlayers from './CurrentPlayers'
+import {Grid, Segment, Container}  from 'semantic-ui-react'
 
 import {doAutoPlay} from "../actions/GameViewer"
 
@@ -30,13 +31,19 @@ class GameStateViewer extends Component {
 
       var gameStateContent = null
 
+      // if game is arena game, and raw state is not requested
       if (("dungeon" in currentGameState) & (textState===false)) {
         if ('size' in currentGameState['dungeon']){
           gameStateContent = (
-            <ArenaState gameState={currentGameState}></ArenaState>
+            <Container>
+              <CurrentPlayers gameState={gameState} playerMetaData={this.props.playerMetaData}/>
+              <ArenaState gameState={currentGameState}/>
+            </Container>
           )
         }
       }
+
+      // all other cases
       if (gameStateContent == null){
         var gameStateString = JSON.stringify(currentGameState, null, 4)
         gameStateContent = (
@@ -48,6 +55,7 @@ class GameStateViewer extends Component {
       }
 
 
+      // add a message to show
       var lastMoveString = JSON.stringify(lastMove, null, 4)
       content = (
         <div>
@@ -81,9 +89,10 @@ class GameStateViewer extends Component {
 const mapStateToProps = state => {
   // do work here
   return {
-    gameState:state.gameStates.stateArray[state.gameStates.stateIndex],
-    textState:state.gameStates.textState,
-    isPlaying: state.gameStates.isPlaying
+    gameState: state.gameStates.stateArray[state.gameStates.stateIndex],
+    textState: state.gameStates.textState,
+    isPlaying: state.gameStates.isPlaying,
+    playerMetaData: state.playerData.players
   }
 }
 

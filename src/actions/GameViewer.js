@@ -2,6 +2,7 @@ import {SELECT_GAME, SELECT_TURN, SELECT_PAGE, REQUEST_GAMES,
   RECEIVE_GAMES, REQUEST_STATES, RECEIVE_STATES, CHANGE_AUTOPLAY, CHANGE_TEXT_STATE,
   AUTO_INCREMENT_TURN} from './index'
 
+import {fetchPlayerMetaData} from './PlayerData'
 
   export const selectGame = id => {
     return {
@@ -116,13 +117,17 @@ import {SELECT_GAME, SELECT_TURN, SELECT_PAGE, REQUEST_GAMES,
 export function fetchStates(gameID) {
   return function (dispatch) {
     dispatch(requestStates(gameID))
-    return fetch('/api/states/'+String(gameID))
+    return fetch('/api/states/' + String(gameID))
     .then(
       response => response.json(),
       error => console.log('An error occured.', error)
     )
     .then(json =>{
       dispatch(receiveStates(gameID, json))
+      let playerIDs = JSON.parse(json[0]['player_ids'])
+      for (let playerID of playerIDs) {
+        dispatch(fetchPlayerMetaData(playerID))
+      }
     }
   )
 }

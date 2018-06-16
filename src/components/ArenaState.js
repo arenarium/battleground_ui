@@ -1,10 +1,10 @@
 import React from 'react';
-import { Stage, Layer, Rect, Circle, Group } from 'react-konva';
+import { Stage, Layer, Rect, Circle, Group} from 'react-konva';
 import { exampleGameState } from "../data/example_arena_game_state"
 
 let defaultState = JSON.parse(exampleGameState)
 
-let colors = ["red","green","blue"]
+let colors = ["red", "green", "blue", "yellow"]
 
 var stageSize = [700, 400]
 
@@ -101,20 +101,7 @@ export const ArenaState = ({gameState= defaultState})=>{
         {gladiatorElements}
       </Layer>
     </Stage>
-
   )
 }
 
-
-// const mapStateToProps = state => {
-//   return ({
-//     gameState:state.gameStates.stateArray[state.gameStates.stateIndex],
-//   })
-// }
-//
-// const mapDispatchToProps = dispatch => {
-//   return {}
-//   }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(ArenaState)
 export default ArenaState
