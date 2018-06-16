@@ -31,7 +31,10 @@ export const CurrentPlayers = ({gameState=defaultState, playerMetaData})=>{
   for (var i = 0; i < gladiatorData.length; i++) {
     let gladiator = gladiatorData[i]
     let id = playerIDs[i]
-    let name = playerMetaData[id]['name']
+    let name = '...'
+    if (playerMetaData.hasOwnProperty(id)){
+    name = playerMetaData[id]['name']
+    }
     gladiatorElements.push(
       <Gladiator
         name={name}
