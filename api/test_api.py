@@ -44,7 +44,7 @@ def test_stats():
     test_app = app.app.test_client()
 
     # this game type should not exist
-    response = test_app.get("/api/stats/arena_game_pos")
+    response = test_app.get("/api/stats/basic_game")
     assert response.status_code == 200
 
     data = response.data.decode()
