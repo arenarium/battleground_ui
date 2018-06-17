@@ -4,7 +4,7 @@
 import {CODE_UPLOAD_ON_CHANGE, CODE_UPLOAD_START, CODE_UPLOAD_FAIL, CODE_UPLOAD_SUCCESS} from '../actions'
 
 const default_state = {
-  formData:{'agentName': 'default name', 'file': '', 'gameType':'arena_game_pos'},
+  formData:{'agentName': null, 'file': '', 'gameType':'arena_game_pos'},
   didSubmit:false,
   success:false
 }

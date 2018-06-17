@@ -19,7 +19,7 @@ class FileUploadForm extends Component {
           type='text'
           placeholder='Choose Game Type'
           name='gameType'
-          label='Game Type'
+          label='Game Type (If you dont know what to put, just leave the default value.)'
           onChange={ (e) => onChange(e.target)} />
 
         <Form.Input

@@ -25,7 +25,7 @@ export const AppNavigation = () =>(
     </Menu.Item>
 
     <Menu.Item as={Link} to="/about">
-          Story
+          About
     </Menu.Item>
 
   </Menu>

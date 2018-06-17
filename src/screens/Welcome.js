@@ -1,5 +1,5 @@
 import React from 'react'
-import {Segment, Container, Header, Button, Card, Image} from 'semantic-ui-react'
+import {Segment, Container, Header, Button, Card, Image, Icon} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 
@@ -14,14 +14,14 @@ const Welcome = () =>(
           Play by writing code, Learn to code AI.
         </p>
         <br/>
-        <Button as={Link} to="/games">
-          Observe Games
+        <Button primary as={Link} to="/games">
+          Watch a game
         </Button>
         <span style={{padding:'.5em'}}>
           or
         </span>
-        <Button as={Link} to="/upload">
-          Join
+        <Button primary as={Link} to="/upload">
+          Play
         </Button>
       </Container>
     </Segment>
@@ -66,7 +66,7 @@ const Welcome = () =>(
               src='/images/nerves.jpeg'/>
             <Card.Content>
               <Card.Header>
-                Learn to build a new AI.
+                Learn to build AI by playing.
               </Card.Header>
               <Card.Description>
                 Agents in arenarium have memory and can learn over time.
@@ -75,6 +75,13 @@ const Welcome = () =>(
             </Card.Content>
           </Card>
         </Card.Group>
+      </Container>
+      </Segment>
+      <Segment vertical>
+      <Container textAlign='center'>
+        <a href='https://github.com/arenarium'>
+        <p>Find us on GitHub <Icon name='github'/></p>
+        </a>
       </Container>
     </Segment>
   </div>
