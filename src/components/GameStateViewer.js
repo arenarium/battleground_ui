@@ -27,8 +27,8 @@ class GameStateViewer extends Component {
 
     if (gameState != null){
       var currentGameState = gameState["game_state"]
-      var lastMove = gameState["last_move"]
-
+      // var lastMove = gameState["last_move"]
+      var lastMove = currentGameState['message']
       var gameStateContent = null
 
       // if game is arena game, and raw state is not requested
@@ -62,7 +62,7 @@ class GameStateViewer extends Component {
           <Segment>
             <StateNav/>
           </Segment>
-          <Grid fluid='true' celled='internally'>
+          <Grid stackable celled='internally'>
             <Grid.Column width={12}>
               {gameStateContent}
             </Grid.Column>
