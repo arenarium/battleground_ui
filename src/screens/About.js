@@ -20,7 +20,7 @@ const About = () =>(
         <a href='https://twitter.com/vincentropy'> or find us on twitter.</a>
         </p>
         <p>
-        This project is a volunteer effort, and costributions are welcome.
+        This project is a volunteer effort, and contributions are welcome.
       </p>
     </Container>
   </Segment>

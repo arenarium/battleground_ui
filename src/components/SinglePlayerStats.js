@@ -7,6 +7,8 @@ import {fetchSinglePlayerStats} from '../actions/Stats'
 import {Table} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
+import AgentMetaData from './AgentMetaData'
+
 
 class SinglePlayerStats extends Component {
 
@@ -16,6 +18,8 @@ class SinglePlayerStats extends Component {
 
   render(){
     var playerStats = this.props.playerStats
+
+    var playerMetaData = this.props.metaData[this.props.match.params.id]
     let listItemArray=[]
 
     let i=0
@@ -49,7 +53,8 @@ class SinglePlayerStats extends Component {
 
     console.log(playerStats);
     return (
-      <Segment>
+      <Segment vertical>
+        <AgentMetaData metaData={playerMetaData}/>
         <Table celled padded selectable>
           <Table.Header>
             <Table.Row>
@@ -71,6 +76,7 @@ class SinglePlayerStats extends Component {
 const mapStateToProps = state => {
   return {
     playerStats: state.playerStats.playerStats,
+    metaData: state.playerData.players
   }
 }
 

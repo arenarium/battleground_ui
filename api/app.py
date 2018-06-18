@@ -57,6 +57,16 @@ def get_agent_meta_data(agent_id):
         return jsonify({'error': str(e)}), 500
 
 
+@app.route("/api/agents/code/<agent_id>")
+def get_agent_code(agent_id):
+    try:
+        meta_data = agent_data.get_agents(agent_id=agent_id, fields=['code'])[0]
+        meta_data['_id'] = str(meta_data['_id'])
+        return jsonify(meta_data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route("/api/agents/results/<agent_id>")
 def get_agent_results(agent_id):
     results = agent_data.load_agent_results(agent_id=agent_id, limit=10)

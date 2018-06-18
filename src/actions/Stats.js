@@ -1,5 +1,5 @@
 import {REQUEST_PLAYER_STATS, RECEIVE_PLAYER_STATS, RECEIVE_LEADER_STATS, REQUEST_LEADER_STATS} from "./index"
-
+import {fetchPlayerMetaData} from './PlayerData'
 
 export const requestLeaderStats = gameType => {
   return {
@@ -55,6 +55,7 @@ export function fetchSinglePlayerStats(agentID) {
     )
     .then(json =>{
       dispatch(receivePlayerStats(json))
+      dispatch(fetchPlayerMetaData(agentID))
     }
   )
   }

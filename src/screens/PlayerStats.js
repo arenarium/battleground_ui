@@ -4,7 +4,7 @@ import {connect} from "react-redux"
 import LeaderStatsViewer from '../components/LeaderStatsViewer'
 import SinglePlayerStats from '../components/SinglePlayerStats'
 
-import {Container, Segment} from 'semantic-ui-react'
+import {Container, Segment, Header} from 'semantic-ui-react'
 
 class PlayerStats extends Component {
 
@@ -23,17 +23,25 @@ class PlayerStats extends Component {
 
     switch (selector) {
       case 'agent':
-      content = <SinglePlayerStats match={this.props.match}/>
+      content = (
+        <Container>
+        <Header>Recent games for:</Header>
+        <SinglePlayerStats match={this.props.match}/>
+        </Container>
+      )
       break
       default:
-      content = <LeaderStatsViewer/>
+      content = (
+        <Container>
+        <Header>Top ranking agents:</Header>
+        <LeaderStatsViewer/>
+        </Container>
+      )
     }
 
     return(
       <Segment vertical>
-        <Container>
           {content}
-        </Container>
       </Segment>
     )
   }
