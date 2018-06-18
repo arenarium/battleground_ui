@@ -17,13 +17,13 @@ export const StateNav = ({stateIndex, length, autoPlay, textState,
             onChange={onChangeAutoPlay}
             style={{marginRight:"2em"}} label="Autoplay"/>
         </Grid.Column>
-        <Grid.Column width={2}>
+        <Grid.Column width={3}>
           <Checkbox
             checked={textState}
             onChange={onChangeTextState}
             style={{marginRight:"2em"}} label="Show Raw State"/>
         </Grid.Column>
-        <Grid.Column width={10}>
+        <Grid.Column width={9}>
 
           <Input
             fluid={true}

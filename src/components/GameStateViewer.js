@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import StateNav from "./StateNav"
 import ArenaState from './ArenaState'
 import CurrentPlayers from './CurrentPlayers'
-import {Grid, Segment, Container}  from 'semantic-ui-react'
+import {Grid, Segment, Container, Message}  from 'semantic-ui-react'
 
 import {doAutoPlay} from "../actions/GameViewer"
 
@@ -38,6 +38,9 @@ class GameStateViewer extends Component {
             <Container>
               <CurrentPlayers gameState={gameState} playerMetaData={this.props.playerMetaData}/>
               <ArenaState gameState={currentGameState}/>
+                <Message>
+                  Gladiators can move and attack. Last AI standing wins.
+                </Message>
             </Container>
           )
         }
