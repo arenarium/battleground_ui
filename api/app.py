@@ -96,4 +96,4 @@ def upload_code():
 
 @app.route("/api/")
 def main():
-    return "flask root"
+    return "The API is alive!"
