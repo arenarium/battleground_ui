@@ -4,9 +4,11 @@
 import {CODE_UPLOAD_ON_CHANGE, CODE_UPLOAD_START, CODE_UPLOAD_FAIL, CODE_UPLOAD_SUCCESS} from '../actions'
 
 const default_state = {
-  formData:{'agentName': null, 'file': '', 'gameType':'arena_game_pos'},
+  formData:{'agentName': '', 'file': '', 'gameType':'arena_game_pos'},
   didSubmit:false,
-  success:false
+  success:false,
+  errors: {'agentName': null, 'file': null, 'gameType':null},
+  agentID: null
 }
 
 const codeUpload = (state = default_state, action) => {
@@ -21,16 +23,16 @@ const codeUpload = (state = default_state, action) => {
         }
       }
       newValues[action.name] = action.value
-      return {...state, formData: newValues, didSubmit:false}
+      return {...state, formData: newValues, didSubmit: false}
 
     case CODE_UPLOAD_START:
       return ({...state, didSubmit: true})
 
     case CODE_UPLOAD_SUCCESS:
-      return ({...state, success: true})
+      return ({...state, success: true, agentID: action.agentID})
 
     case CODE_UPLOAD_FAIL:
-      return ({...state, success: false})
+      return ({...state, success: false, errors: action.errors})
 
     default:
       return state

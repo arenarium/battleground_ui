@@ -15,11 +15,11 @@ const CodeUpload =() => (
         </Message.Header>
         <p>
           Dowload the&nbsp;
-          <a href='https://github.com/arenarium/battleground_agent_template'>
+          <a target="_blank" rel="noopener noreferrer" href='https://github.com/arenarium/battleground_agent_template'>
             Agent Templates,&nbsp;
           </a>
           and check out the&nbsp;
-          <a href='https://arenarium.readthedocs.io/'>
+          <a target="_blank" rel="noopener noreferrer" href='https://arenarium.readthedocs.io/'>
             Getting Started Guide.
           </a>
         </p>

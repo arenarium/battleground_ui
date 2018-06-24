@@ -1,7 +1,15 @@
 import {CODE_UPLOAD_ON_CHANGE, CODE_UPLOAD_START, CODE_UPLOAD_FAIL, CODE_UPLOAD_SUCCESS} from './index'
 
+export const codeUploadFail = errors => {
+  return {
+    type: CODE_UPLOAD_FAIL,
+    errors
+  }
+}
+
+
 export const uploadFormChange = (target) => {
-  console.log(target);
+  // console.log(target);
   const name = target.name
   const inputType = target.type
   var value = target.value
@@ -52,7 +60,8 @@ export const uploadFormChange = (target) => {
         }
       )
       .then(json =>{
-        dispatch({type: CODE_UPLOAD_SUCCESS})
+        console.log(json);
+        dispatch({type: CODE_UPLOAD_SUCCESS, agentID: json.agent_id})
       }
     )
   }
