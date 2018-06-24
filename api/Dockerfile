@@ -25,6 +25,7 @@ COPY . .
 USER uwsgi_user
 
 CMD [ "uwsgi", "--socket", "0.0.0.0:3031", \
+               "--master", \
                "--plugins", "python3", \
                "--protocol", "uwsgi", \
                "--wsgi-file", "app.py",\
