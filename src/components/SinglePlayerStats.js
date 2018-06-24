@@ -4,7 +4,7 @@ import {connect} from "react-redux"
 import {Segment} from 'semantic-ui-react'
 import {fetchSinglePlayerStats} from '../actions/Stats'
 
-import {Table} from 'semantic-ui-react'
+import {Table, Message, Header} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 import AgentMetaData from './AgentMetaData'
@@ -18,7 +18,6 @@ class SinglePlayerStats extends Component {
 
   render(){
     var playerStats = this.props.playerStats
-
     var playerMetaData = this.props.metaData[this.props.match.params.id]
     let listItemArray=[]
 
@@ -50,10 +49,20 @@ class SinglePlayerStats extends Component {
         i+=1;
       }
     }
+    let message = ''
 
-    console.log(playerStats);
+    if (!playerStats || playerStats.length === 0){
+      message = <Message info>
+        It looks like your agent has not played any games yet.
+        <br/>
+        If you just uploaded your agent, it may take 5-10 minutes for games to appear here.
+      </Message>
+    }
+
     return (
       <Segment vertical>
+        {message}
+        <Header>Recent games for:</Header>
         <AgentMetaData metaData={playerMetaData}/>
         <Table celled padded selectable>
           <Table.Header>
