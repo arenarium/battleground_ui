@@ -10,6 +10,7 @@ export const codeUploadFail = errors => {
 
 export const uploadFormChange = (target) => {
   // console.log(target);
+  if (target){
   const name = target.name
   const inputType = target.type
   var value = target.value
@@ -35,6 +36,9 @@ export const uploadFormChange = (target) => {
         value
       }
     }
+  }else{
+    return {type: null}
+  }
   }
 
 

@@ -9,19 +9,21 @@ const CodeUpload =() => (
       <Header>
         Join the fun, upload your player code.
       </Header>
-      <Message info>
+      <Message>
         <Message.Header>
           Need some help getting started?
         </Message.Header>
         <p>
-          Dowload the&nbsp;
+          The fastest way to get started is to simply upload one of the&nbsp;
           <a target="_blank" rel="noopener noreferrer" href='https://github.com/arenarium/battleground_agent_template'>
-            Agent Templates,&nbsp;
+            Agent Templates.&nbsp;
           </a>
-          and check out the&nbsp;
+          <br/>
+          Check out the&nbsp;
           <a target="_blank" rel="noopener noreferrer" href='https://arenarium.readthedocs.io/'>
-            Getting Started Guide.
+            Getting Started Guide &nbsp;
           </a>
+          to learn how to write your own agent.
         </p>
       </Message>
       <Segment>

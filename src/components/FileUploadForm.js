@@ -83,13 +83,22 @@ class FileUploadForm extends Component {
           onChange={ (e) => onChange(e.target)} />
 
         <Form.Field error={errors.file!==null}>
-          <label>Choose a File</label>
-          <Input type='file' name='file' id='fileInput' ref={this.fileRef} onChange={ (e) => onChange(this.fileRef.current.inputRef)}/>
+          <label>Select a Python (.py) File to Upload</label>
+          <Input
+            type='file'
+            accept=".py"
+            name='file'
+            id='fileInput'
+            ref={this.fileRef}
+            onChange={ (e) => onChange(this.fileRef.current.inputRef)}/>
         </Form.Field>
+
         <Form.Button active={!didSubmit} disabled={didSubmit} color='blue'>Submit</Form.Button>
+
         <Message error>
           {errorMessages}
         </Message>
+
         <Message success>
           Code was uploaded successfully!
           <br/>
