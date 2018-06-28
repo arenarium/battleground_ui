@@ -26,7 +26,11 @@ const Welcome = () =>(
       </Container>
     </Segment>
     <Segment vertical>
-      <Container>
+      <Container textAlign='center'>
+        <Message>
+            Arenarium is in active development. Help us improve Arenarium
+            <a href='https://github.com/arenarium/battleground_core'> by reporting issues/questions on github.</a>
+        </Message>
         <Card.Group centered stackable itemsPerRow={4}>
           <Card>
             <Image
@@ -80,10 +84,6 @@ const Welcome = () =>(
       <Segment vertical>
 
       <Container textAlign='center'>
-        <Message>
-            Arenarium is in active development. Help us improve Arenarium
-            <a href='https://github.com/arenarium/battleground_core'> by reporting issues/questions on github.</a>
-        </Message>
         <a href='https://github.com/arenarium'>
         <p>Find us on GitHub <Icon name='github'/></p>
         </a>

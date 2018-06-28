@@ -3,7 +3,7 @@ import {Dropdown} from 'semantic-ui-react'
 import gameTypes from '../data/gameTypes'
 
 
-export const GameTypeSelector = ({fluid=false, value, onChange})=>{
+export const GameTypeSelector = ({fluid=false, value, onChange, name='GameType'})=>{
 
   let typeOptions = []
 
@@ -20,6 +20,7 @@ export const GameTypeSelector = ({fluid=false, value, onChange})=>{
     <Dropdown
       value={value}
       fluid={fluid}
+      name={name}
       options={typeOptions}
       onChange={(event, selection) => onChange(selection['value'])}
       />
