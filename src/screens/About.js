@@ -5,13 +5,11 @@ const About = () =>(
 <div>
   <Segment inverted vertical className='welcome'>
     <Container text className='welcome_message'>
-      <Header as='h1' inverted>Build a new world.</Header>
-      <p>Play by writing code. Learn AI by playing.</p>
+      <Header as='h1' inverted>Play by writing code. Learn AI by playing.</Header>
     </Container>
     </Segment>
     <Segment vertical>
     <Container text className='welcome_message'>
-      <Header as='h1' inverted>100% Open Source</Header>
       <p>
         Arenarium is 100% open source and you can <a href='https://github.com/arenarium'> find us on github.</a>
       </p>
@@ -21,6 +19,11 @@ const About = () =>(
         </p>
         <p>
         This project is a volunteer effort, and contributions are welcome.
+        <br/>
+        Arenarium is currently maintained by&nbsp;
+        <a href='https://github.com/vincentropy'>vincentropy</a>
+        &nbsp; and &nbsp;
+        <a href='https://github.com/phylyc'>phylyc</a>.
       </p>
     </Container>
   </Segment>
