@@ -5,12 +5,13 @@
 import {REQUEST_PLAYER_STATS, RECEIVE_PLAYER_STATS, RECEIVE_LEADER_STATS, REQUEST_LEADER_STATS} from "../actions"
 
 
-const playerStats = (state = {leaderStats:[]}, action) => {
+const playerStats = (state = {leaderStats:[], gameType:'arena_game_pos'}, action) => {
   switch (action.type) {
     case REQUEST_LEADER_STATS:
     return ({
       ...state,
       isFetching: true,
+      gameType: action.gameType
     })
     case RECEIVE_LEADER_STATS:
     return ({

@@ -22,9 +22,12 @@ export const GameTypeSelector = ({fluid=false, value, onChange, name='GameType'}
       fluid={fluid}
       name={name}
       options={typeOptions}
-      onChange={(event, selection) => onChange(selection['value'])}
+      onChange={(event, target) => {onChange(target)}}
       />
   )
 }
 
 export default GameTypeSelector
+
+
+// onChange={(event, selection) => onChange(selection['value'])}

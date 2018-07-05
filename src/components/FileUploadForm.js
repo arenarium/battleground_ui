@@ -70,7 +70,7 @@ class FileUploadForm extends Component {
           <GameTypeSelector
             value={formData.gameType}
             name='gameType'
-            onChange={ (e) => onChange(e.target)}/>
+            onChange={ (target) => onChange(target)}/>
         </Form.Field>
 
         <Form.Input

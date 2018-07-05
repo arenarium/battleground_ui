@@ -15,12 +15,12 @@ class LeaderStatsViewer extends Component {
   }
 
   render(){
-    console.log(this.props)
+    // console.log(this.props)
     var {playerStats, gameType, onTypeSelect} = this.props
     return (
       <Segment>
         <Header>Top ranking agents:</Header>
-        <GameTypeSelector value={gameType} onChange={onTypeSelect}/>
+        <GameTypeSelector value={gameType} onChange={(target) => {onTypeSelect(target.value); console.log(target);}}/>
         <LeaderBoardTable playerStats={playerStats} onClick={()=>{}}/>
       </Segment>
     )
@@ -30,7 +30,7 @@ class LeaderStatsViewer extends Component {
 const mapStateToProps = state => {
   return {
     playerStats: state.playerStats.leaderStats,
-    gameType: state.gameList.gameType,
+    gameType: state.playerStats.gameType,
   }
 }
 

@@ -9,11 +9,11 @@ export const codeUploadFail = errors => {
 
 
 export const uploadFormChange = (target) => {
-  // console.log(target);
   if (target){
   const name = target.name
   const inputType = target.type
   var value = target.value
+  // console.log(value);
   if (inputType === 'file'){
     return function (dispatch) {
       var selectedFile = target.files[0]
