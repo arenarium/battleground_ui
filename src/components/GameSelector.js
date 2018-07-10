@@ -22,16 +22,18 @@ class GameSelector extends Component {
     let gameOptions = []
 
     let containsSelected=false
-
+    // console.log(gameArray);
     for (let key in gameArray) {
       if (gameArray.hasOwnProperty(key)) {
         let gameID = gameArray[key]["_id"]
         if (gameID === this.props.gameID){
           containsSelected = true
         }
-        let gameType = gameArray[key]["game_type"]
+        // let gameType = gameArray[key]["game_type"]
+        let gameTime = gameArray[key]["utc_time"]
         gameOptions.push(
-        {text: gameType + ": " + gameID.substring(10,), value: gameID}
+        // {text: gameType + ": " + gameID.substring(10,), value: gameID}
+        {text: gameTime.substring(0,21), value: gameID}
         )
       }
     }
@@ -53,7 +55,7 @@ class GameSelector extends Component {
           <GameTypeSelector
             fluid={true}
             value={selectedType}
-            onChange={onTypeSelect}
+            onChange={(target) => {onTypeSelect(target.value)}}
             />
         </Grid.Column>
         <Grid.Column key={1}>

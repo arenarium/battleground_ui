@@ -4,7 +4,6 @@ import gameTypes from '../data/gameTypes'
 
 
 export const GameTypeSelector = ({fluid=false, value, onChange, name='GameType'})=>{
-
   let typeOptions = []
 
   for (let key in gameTypes) {
