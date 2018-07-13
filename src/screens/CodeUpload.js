@@ -14,16 +14,16 @@ const CodeUpload =() => (
           Need some help getting started?
         </Message.Header>
         <p>
-          The fastest way to get started is to simply upload one of the&nbsp;
-          <a target="_blank" rel="noopener noreferrer" href='https://github.com/arenarium/battleground_agent_template'>
-            Agent Templates.&nbsp;
-          </a>
-          <br/>
           Check out the&nbsp;
           <a target="_blank" rel="noopener noreferrer" href='https://arenarium.readthedocs.io/'>
             Getting Started Guide &nbsp;
           </a>
           to learn how to write your own agent.
+          <br/>
+            The fastest way to get started is to simply upload one of the&nbsp;
+            <a target="_blank" rel="noopener noreferrer" href='https://github.com/arenarium/battleground_agent_template'>
+              Agent Templates.&nbsp;
+            </a>
         </p>
       </Message>
       <Segment>
