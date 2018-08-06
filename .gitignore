@@ -220,3 +220,5 @@ $RECYCLE.BIN/
 
 .pytest_cache
 tmp
+
+*.xcf
